@@ -1,4 +1,6 @@
 class Plan < ApplicationRecord
+  validates :name, presence: true
+
   belongs_to :user
   has_many :resources, dependent: :destroy
   has_many :diary_entries, dependent: :destroy
