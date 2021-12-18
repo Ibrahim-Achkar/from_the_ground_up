@@ -1,12 +1,17 @@
 class PlansController < ApplicationController
   before_action :set_plan, only: %i[show edit update destroy]
-
+  
   def index
     @plans = Plan.all
+    if params[:search]
+      @plans = Plan.search(params[:search]).order("created_at DESC")
+    else
+      @plans = Plan.all.order('created_at DESC')
+    end
   end
 
   def show
-
+    @plan = Plan.find(params[:id])
   end
 
   def new
@@ -46,4 +51,5 @@ class PlansController < ApplicationController
     params.require(:plan).permit(:name, photos: [])
   end
 end
+
 end

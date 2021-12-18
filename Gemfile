@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.4'
 
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
 # Use postgresql as the database for Active Record
@@ -27,6 +28,8 @@ gem 'redis', '~> 4.0'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
+#cloudinary for image upload
+gem 'cloudinary', '~> 1.16.0'
 
 gem 'devise'
 
@@ -50,6 +53,9 @@ group :development do
   gem 'listen', '~> 3.3'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  gem 'htmlbeautifier'
+  gem 'rubocop'
+  gem 'reek'
 end
 
 group :test do
