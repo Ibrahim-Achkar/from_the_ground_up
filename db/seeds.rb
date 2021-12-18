@@ -31,6 +31,6 @@ puts "Plan #{coding.name} created with id #{coding.id}!"
 running = Plan.create(name: "Learning to Run!", user_id: gary.id)
 running.save!
 
-puts "Plan #{coding.name} created with id #{coding.id}!"
+puts "Plan #{coding.name} created with id #{running.id}!"
 
 puts "done!"
