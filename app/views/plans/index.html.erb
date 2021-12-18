@@ -2,24 +2,48 @@
 
   <h1>Plans Index Page</h1>
 
-
   <div class="cards">
-  <% @plans.each do |plan| %>
-    <div class="card" style="width: 18rem;">
-      <img class="card-img-top" src="..." alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title"><%=plan.name%></h5>
-        <div class = "flex-container">
-          <p class="card-text">By: </p>
-          <p>Created at:</p>
-        </div>
-        <a><%= link_to "Select Plan!", plan_path(plan), class: "btn btn-primary" %></a>
+    <% if user_signed_in? %>
+      <a id="myBtn">
+      <div class="card">
+        <i class="fas fa-plus-circle"></i>
       </div>
-    </div>
-  <% end %>
+      </a>
+    <% end %>
+
+    <% @plans.each do |plan| %>
+      <div class="card">
+        <img class="card-img-top" src="..." alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title"><%=plan.name%></h5>
+          <div class = "flex-container">
+            <p class="card-text">By: </p>
+            <p>Created at:</p>
+          </div>
+          <a><%= link_to "Select Plan!", plan_path(plan), class: "btn btn-primary" %></a>
+        </div>
+      </div>
+    <% end %>
   </div>
 
 
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <div>
+        <p class="close">&times;</p>
+      </div>
+
+      <div class="form-container">
+        <h2 class="text-center">Create a plan</h2>
+        <%= simple_form_for @plan do |f| %>
+          <%= f.input :name %>
+          <%= f.submit "Create new plan", class: "btn btn-primary button-form" %>
+        <% end %>
+      </div>
+
+
+    </div>
+  </div>
 
 
 </div>
