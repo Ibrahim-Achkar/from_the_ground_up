@@ -1,4 +1,18 @@
 // Specific CSS for your home-page
+
+.full-screen {
+  height: 93vh;
+  background-color: $off-white;
+  //   background: asset-url('hero-image.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .middle-align {
   height: 93vh;
   display: flex;
