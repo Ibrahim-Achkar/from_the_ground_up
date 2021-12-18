@@ -1,1 +1,16 @@
 // Specific CSS for your home-page
+.middle-align {
+  height: 93vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-headline {
+  margin-bottom: 100px;
+}
+
+.home-search {
+  width: 800px;
+  margin-bottom: 100px;
+}
