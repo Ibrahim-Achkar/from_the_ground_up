@@ -1,4 +1,5 @@
 class PlansController < ApplicationController
+  before_action :set_plan, only: %i[show edit update destroy]
 
   def index
     @plans = Plan.all
@@ -10,14 +11,12 @@ class PlansController < ApplicationController
   end
 
   def show
-    @plan = Plan.find(params[:id])
+    @tasks = @plan.tasks
   end
-
 
   private
 
   def set_plan
     @plan = Plan.find(params[:id])
   end
-
 end
