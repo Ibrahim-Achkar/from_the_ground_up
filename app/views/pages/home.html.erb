@@ -1,2 +1,24 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="container">
+  <div class="text-center middle-align">
+
+    <div>
+
+      <div class="home-headline">
+        <h1>From The Ground Up</h1>
+        <h2>A Community of Learners</h2>
+      </div>
+
+      <div class="home-search">
+        <h3>What would you like to learn today?</h3>
+        <%= form_tag plans_path, :method => 'get' do %>
+          <div class="input-group mb-3">
+            <%= text_field_tag :search, params[:search], :class=>"form-control", placeholder: "Search a topic..." %>
+            <%= submit_tag "Search", :name => nil, :class=>"btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+
+    </div>
+
+  </div>
+</div>

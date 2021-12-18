@@ -1,0 +1,25 @@
+<div class="container">
+
+  <h1>Plans Index Page</h1>
+
+
+  <div class="cards">
+  <% @plans.each do |plan| %>
+    <div class="card" style="width: 18rem;">
+      <img class="card-img-top" src="..." alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title"><%=plan.name%></h5>
+        <div class = "flex-container">
+          <p class="card-text">By: </p>
+          <p>Created at:</p>
+        </div>
+        <a><%= link_to "Select Plan!", plan_path(plan), class: "btn btn-primary" %></a>
+      </div>
+    </div>
+  <% end %>
+  </div>
+
+
+
+
+</div>
