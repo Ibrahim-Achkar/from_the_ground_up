@@ -1,0 +1,9 @@
+
+<div class="container">
+<h1>Add a new Goal.. </h1>
+  <%= simple_form_for([@plan, @goal]) do |f| %>
+    <%= f.input :content %>
+    <%= f.submit "Submit Goal!", class: "btn btn-primary button-form" %>
+  <% end %>
+
+</div>

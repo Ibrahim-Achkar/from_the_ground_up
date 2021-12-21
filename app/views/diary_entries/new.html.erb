@@ -1,0 +1,6 @@
+      <%= simple_form_for([@plan, @diary_entry]) do |f| %>
+        <%= f.input :title %>
+        <%= f.input :mood %>
+        <%= f.input :content %>
+        <%= f.submit "Submit", class: "btn btn-primary button-form" %>
+      <% end %>
