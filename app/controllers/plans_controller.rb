@@ -1,5 +1,6 @@
 class PlansController < ApplicationController
-
+  before_action :set_plan, only: %i[show edit update destroy]
+  
   def index
     @plans = Plan.all
     @plan = Plan.new
@@ -28,6 +29,20 @@ class PlansController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    @plan.update(plan_params)
+    redirect_to plan_path(@plan)
+  end
+
+  def destroy
+    @plan.destroy
+    redirect_to plans_path
+  end
+
+
   private
 
   def set_plan
@@ -35,7 +50,6 @@ class PlansController < ApplicationController
   end
 
   def plan_params
-    params.require(:plan).permit(:name)
+    params.require(:plan).permit(:name, photos: [])
   end
-
 end
