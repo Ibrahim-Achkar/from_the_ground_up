@@ -3,6 +3,7 @@ class PlansController < ApplicationController
 
   def index
     @plans = Plan.all
+    @plan = Plan.new
     if params[:search]
       @plans = Plan.search(params[:search]).order("created_at DESC")
     else
@@ -40,6 +41,7 @@ class PlansController < ApplicationController
     @plan.destroy
     redirect_to plans_path
   end
+
 
   private
 
