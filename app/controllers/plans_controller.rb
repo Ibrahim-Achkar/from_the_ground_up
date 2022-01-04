@@ -11,7 +11,7 @@ class PlansController < ApplicationController
   end
 
   def show
-    @plan = Plan.find(params[:id])
+    @tasks = @plan.tasks
   end
 
   def new

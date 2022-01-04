@@ -1,0 +1,10 @@
+<div class="full-screen">
+  <div class="signup-card">
+    <h2>Create task</h2>
+    <%= simple_form_for ([@plan, @task]) do |f| %>
+      <%= f.input :due_date, as: :date, html5: true %>
+      <%= f.input :action %>
+      <%= f.submit "Create task", class: "btn btn-primary button-form" %>
+    <% end %>
+  </div>
+</div>
