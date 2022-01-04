@@ -4,8 +4,8 @@
 
   <div class="cards">
     <% if user_signed_in? %>
-      <a id="myBtn">
-      <div class="card">
+      <a id="newPlanBtn">
+      <div class="plan-card text-center">
         <i class="fas fa-plus-circle"></i>
       </div>
       </a>
@@ -27,7 +27,7 @@
   </div>
 
 
-  <div id="myModal" class="modal">
+  <div id="newPlanModal" class="modal">
     <div class="modal-content">
       <div>
         <p class="close">&times;</p>
@@ -36,7 +36,9 @@
       <div class="form-container">
         <h2 class="text-center">Create a plan</h2>
         <%= simple_form_for @plan do |f| %>
-          <%= f.input :name %>
+          <%= f.input :name, :label => "What's the name of your plan?"%>
+          <%= f.input :tag_list, :label => "Add tags seperated by commas - eg. one, two, three"%>
+
           <%= f.submit "Create new plan", class: "btn btn-primary button-form" %>
         <% end %>
       </div>
