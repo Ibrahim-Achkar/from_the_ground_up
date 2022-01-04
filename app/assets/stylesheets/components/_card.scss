@@ -1,0 +1,28 @@
+.plan-card {
+  width: 16rem;
+  height: 22rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  padding: 8px;
+  margin-bottom: 8px;
+  transition: all .2s ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.03);
+}
+
+.card_header {
+  text-align: center;
+  margin-right: 16px;
+  margin-top: 8px;
+  margin-left: 8px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-footer-flex {
+  display: flex;
+  justify-content: space-between;
+}
