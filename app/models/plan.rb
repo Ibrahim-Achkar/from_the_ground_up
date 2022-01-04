@@ -1,4 +1,5 @@
 class Plan < ApplicationRecord
+  acts_as_taggable
   validates :name, presence: true
 
   belongs_to :user
@@ -12,5 +13,4 @@ class Plan < ApplicationRecord
   def self.search(search)
     where("lower(name) LIKE ?", "%#{search}%")
   end
-
 end

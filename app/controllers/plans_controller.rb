@@ -50,6 +50,6 @@ class PlansController < ApplicationController
   end
 
   def plan_params
-    params.require(:plan).permit(:name, photos: [])
+    params.require(:plan).permit(:name, :tag_list, photos: [])
   end
 end
