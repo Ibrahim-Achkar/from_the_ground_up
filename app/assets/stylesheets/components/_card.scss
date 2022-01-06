@@ -9,7 +9,7 @@
   transition: all .2s ease-in-out;
 }
 
-.card:hover {
+.plan-card:hover {
   transform: scale(1.03);
 }
 
@@ -25,4 +25,9 @@
 .card-footer-flex {
   display: flex;
   justify-content: space-between;
+}
+
+.red_heart {
+  color: red;
+
 }
