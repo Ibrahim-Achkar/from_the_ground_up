@@ -1,8 +1,34 @@
-<h2>Plan name:</h2>
-<p><%= @plan.name %></p>
-<h2>Plan tags:</h2>
-<p><%= @plan.tag_list %></p>
-<h2>Plan category:</h2>
-<p><%= @plan.category_list %></p>
+
+<h1><%= @plan.name %></h1>
+<h2 class="resource-heading">Resources</h2>
+<div class="resources">
+  <div class="plans">
+    <div class="row">
+      <% @resource_info.each do |resource| %>
+        <div class="col-sm-4">
+          <div class="m-3 p-3">
+            <div class="card" style="width: 18rem;">
+              <div class= "card_header">
+                <h5 class="card-title"><%= resource[:title] %></h5>
+              </div>
+              <div class="card-body">
+                <p class="card-text"><%= resource[:description] %></p>
+              </div>
+              <div class="plan-image">
+                <a href=<%= resource[:url] %> class="card-link" target="_blank">
+                  <img class="img-fluid" src=<%= resource[:image] %>>
+                </a>
+              </div>
+              <div class="card-footer">
+                <div class="card-footer-flex">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
 
 <%= link_to "Back", :back, class: "btn btn-primary" %>
