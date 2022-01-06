@@ -3,6 +3,7 @@ class PlansController < ApplicationController
 
   def index
     @plans = Plan.all
+    @categories = set_categories
     @plan = Plan.new
     if params[:search]
       @plans = Plan.search(params[:search]).order("created_at DESC")
@@ -42,14 +43,29 @@ class PlansController < ApplicationController
     redirect_to plans_path
   end
 
-
   private
+
+  def set_categories
+    ["Art",
+    "Cooking",
+    "Finance",
+    "Gaming",
+    "Gardening",
+    "Health & Wellbeing",
+    "Language",
+    "Misc",
+    "Music",
+    "Professional Development",
+    "Science",
+    "Sport & Fitness",
+    "Tech"]
+  end
 
   def set_plan
     @plan = Plan.find(params[:id])
   end
 
   def plan_params
-    params.require(:plan).permit(:name, :tag_list, photos: [])
+    params.require(:plan).permit(:name, :category_list, :tag_list, photos: [])
   end
 end
