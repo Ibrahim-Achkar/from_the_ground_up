@@ -5,6 +5,7 @@ class PlansController < ApplicationController
     @plans = Plan.all
     @categories = set_categories
     @plan = Plan.new
+    @user = current_user
     if params[:search]
       @plans = Plan.search(params[:search]).order("created_at DESC")
     else
@@ -41,6 +42,20 @@ class PlansController < ApplicationController
   def destroy
     @plan.destroy
     redirect_to plans_path
+  end
+
+  def upvote
+    @plan = Plan.find(params[:id])
+    @plan.upvote_by current_user
+    redirect_back(fallback_location: root_path)
+  end
+
+
+
+  def downvote
+    @plan = Plan.find(params[:id])
+    @plan.downvote_by current_user
+    redirect_back(fallback_location: root_path)
   end
 
   private

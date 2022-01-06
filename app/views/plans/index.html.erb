@@ -21,8 +21,34 @@
             <p>Created at:</p>
           </div>
           <a><%= link_to "Select Plan!", plan_path(plan), class: "btn btn-primary" %></a>
+
+
+          <%= link_to like_plan_path(plan), method: :put do %>
+          <% if @user.voted_up_on? plan %>
+
+           <%= link_to dislike_plan_path(plan), method: :put do %>
+            Liked
+          <i class="fas fa-heart"><p><%= plan.get_upvotes.size %></p></i>
+          <% end %>
+          <%else%>
+            Like
+           <i class="far fa-heart"><p><%= plan.get_upvotes.size %></p></i>
+          <%end%>
+
+           <% end %>
+
+
+
+
+
+
+
+
+
         </div>
       </div>
+
+
     <% end %>
   </div>
 
