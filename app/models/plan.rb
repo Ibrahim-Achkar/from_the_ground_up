@@ -1,4 +1,6 @@
 class Plan < ApplicationRecord
+  acts_as_taggable
+  acts_as_taggable_on :categories
   validates :name, presence: true
   acts_as_votable #votable gem
 
@@ -13,5 +15,4 @@ class Plan < ApplicationRecord
   def self.search(search)
     where("lower(name) LIKE ?", "%#{search}%")
   end
-
 end

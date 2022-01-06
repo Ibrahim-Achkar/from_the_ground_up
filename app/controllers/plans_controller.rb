@@ -3,6 +3,7 @@ class PlansController < ApplicationController
 
   def index
     @plans = Plan.all
+    @categories = set_categories
     @plan = Plan.new
     @user = current_user
     if params[:search]
@@ -44,27 +45,42 @@ class PlansController < ApplicationController
   end
 
   def upvote
-  @plan = Plan.find(params[:id])
-  @plan.upvote_by current_user
-  redirect_back(fallback_location: root_path)
-end
+    @plan = Plan.find(params[:id])
+    @plan.upvote_by current_user
+    redirect_back(fallback_location: root_path)
+  end
 
 
 
-def downvote
-  @plan = Plan.find(params[:id])
-  @plan.downvote_by current_user
-  redirect_back(fallback_location: root_path)
-end
-
+  def downvote
+    @plan = Plan.find(params[:id])
+    @plan.downvote_by current_user
+    redirect_back(fallback_location: root_path)
+  end
 
   private
+
+  def set_categories
+    ["Art",
+    "Cooking",
+    "Finance",
+    "Gaming",
+    "Gardening",
+    "Health & Wellbeing",
+    "Language",
+    "Misc",
+    "Music",
+    "Professional Development",
+    "Science",
+    "Sport & Fitness",
+    "Tech"]
+  end
 
   def set_plan
     @plan = Plan.find(params[:id])
   end
 
   def plan_params
-    params.require(:plan).permit(:name, photos: [])
+    params.require(:plan).permit(:name, :category_list, :tag_list, photos: [])
   end
 end

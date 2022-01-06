@@ -1,0 +1,8 @@
+
+<div class="container">
+<h1>Add a new resource.. </h1>
+  <%= simple_form_for([@plan, @resource]) do |f| %>
+  <%= f.input :url %>
+  <%= f.submit "Submit", class: "btn btn-primary button-form" %>
+  <% end %>
+</div>

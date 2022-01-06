@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     get "like", to: "plans#upvote"
     get "dislike", to: "plans#downvote"
     end
-    resources :resources, only: %i[create destroy]
+    resources :resources, only: %i[new create destroy]
     resources :tasks, only: %i[new create delete edit update destroy]
     resources :diary_entries
     resources :goals
