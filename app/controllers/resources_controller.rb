@@ -1,5 +1,6 @@
 class ResourcesController < ApplicationController
   before_action :authenticate_user!
+
   def new
     @plan = Plan.find(params[:plan_id])
     @resource = Resource.new

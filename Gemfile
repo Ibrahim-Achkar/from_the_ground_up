@@ -27,6 +27,7 @@ gem 'redis', '~> 4.0'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
+
 # cloudinary for image upload
 gem 'cloudinary', '~> 1.16.0'
 
@@ -35,6 +36,9 @@ gem 'devise'
 
 # taggable for tagging plans, etc
 gem 'acts-as-taggable-on', '~> 8.1.0'
+
+# metainspector used to create cards of user resource bookmarks
+gem 'metainspector'
 
 gem 'autoprefixer-rails', '10.2.5'
 gem 'font-awesome-sass'

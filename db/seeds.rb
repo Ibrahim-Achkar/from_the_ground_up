@@ -6,10 +6,11 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-puts "destroying all users and plans, bye bob!"
+puts "destroying all users, plans and resources, bye bob!"
 
 User.destroy_all
 Plan.destroy_all
+Resource.destroy_all
 
 puts "creating new users and plan"
 
@@ -32,5 +33,19 @@ running = Plan.create(name: "Learning to Run!", user_id: gary.id)
 running.save!
 
 puts "Plan #{coding.name} created with id #{running.id}!"
+
+puts "Creating some resources!"
+
+resource_one = Resource.create(url: 'https://programmingwithmosh.com/javascript/setup-eslint-and-prettier-in-your-react-project/')
+resource_one.plan = coding
+resource_one.save!
+
+resource_two = Resource.create(url: 'https://www.freecodecamp.org/')
+resource_two.plan = coding
+resource_two.save!
+
+resource_three = Resource.create(url: 'https://www.programiz.com/javascript/examples/split-array')
+resource_three.plan = coding
+resource_three.save!
 
 puts "done!"

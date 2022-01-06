@@ -13,6 +13,9 @@ class PlansController < ApplicationController
 
   def show
     @tasks = @plan.tasks
+    @resources = @plan.resources
+
+    @resource_info = get_resource_info(@resources) if @resources
   end
 
   def new
@@ -42,7 +45,6 @@ class PlansController < ApplicationController
     redirect_to plans_path
   end
 
-
   private
 
   def set_plan
@@ -51,5 +53,23 @@ class PlansController < ApplicationController
 
   def plan_params
     params.require(:plan).permit(:name, :tag_list, photos: [])
+  end
+
+  def get_resource_info(resources_array)
+    resource_info_array = []
+
+    resources_array.each do |resource|
+      page_meta = MetaInspector.new(resource.url)
+
+      page_hash = {
+        url: page_meta.url,
+        title: page_meta.title,
+        description: page_meta.description,
+        image: page_meta.images.best
+      }
+
+      resource_info_array.push(page_hash)
+    end
+    resource_info_array
   end
 end
