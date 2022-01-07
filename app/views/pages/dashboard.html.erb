@@ -19,10 +19,11 @@
                   <div class="card" style="width: 18rem;">
                    <div class= "card_header">
                          <div>
+
                            <h5 class="card-title"><%= plan.name %></h5>
                          </div>
                         <div>
-                           <i class="fas fa-heart"><p>25</p></i>
+                           <i class="fas fa-heart"><p><%= plan.get_upvotes.size %></p></i>
                         </div>
 
 
@@ -58,9 +59,12 @@
       </div>
     </div>
      <div class="tab-pane fade" id="navtabs2">
-  <h1 id="liked-plans" class="m-3 p-3 top-margin"><%= @user.username%>'s liked plans</h1>
-  <img class="img-fluid" src="https://source.unsplash.com/C6oPXOatFD8">
-  </div>
+       <h1 id="liked-plans" class="m-3 p-3 top-margin"><%= @user.username%>'s liked plans</h1>
+         <img class="img-fluid" src="https://source.unsplash.com/C6oPXOatFD8">
+          <p><% @user.find_voted_items.each do |plan|%></p>
+           <p><%= plan.name%></p>
+          <% end %>
+     </div>
   </div>
 
 
