@@ -3,15 +3,14 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
-import Rails from "@rails/ujs"
-import Turbolinks from "turbolinks"
-import * as ActiveStorage from "@rails/activestorage"
-import "channels"
+import Rails from '@rails/ujs';
+import Turbolinks from 'turbolinks';
+import * as ActiveStorage from '@rails/activestorage';
+import 'channels';
 
-Rails.start()
-Turbolinks.start()
-ActiveStorage.start()
-
+Rails.start();
+Turbolinks.start();
+ActiveStorage.start();
 
 // ----------------------------------------------------
 // Note(lewagon): ABOVE IS RAILS DEFAULT CONFIGURATION
@@ -19,14 +18,16 @@ ActiveStorage.start()
 // ----------------------------------------------------
 
 // External imports
-import "bootstrap";
+import 'bootstrap';
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
-
-require("modal")
+import { loadModal } from '../modal';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
+  // function to load modal was included here because js was not being loaded when navigating to plan, then back to plan index (modal could not be clicked).
+
+  loadModal();
 });

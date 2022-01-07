@@ -1,16 +1,13 @@
 <div class="container">
-
   <h1>Plans Index Page</h1>
-
   <div class="cards">
     <% if user_signed_in? %>
       <a id="newPlanBtn">
-      <div class="plan-card text-center">
-        <i class="fas fa-plus-circle"></i>
-      </div>
+        <div class="plan-card text-center">
+          <i class="fas fa-plus-circle"></i>
+        </div>
       </a>
     <% end %>
-
     <% @plans.each do |plan| %>
       <div class="plan-card">
         <img class="card-img-top" src="..." alt="Card image cap">
@@ -20,37 +17,38 @@
             <p class="card-text">By: </p>
             <p>Created at:</p>
           </div>
-           <a><%= link_to "Select Plan!", plan_path(plan), class: "btn btn-primary" %></a>
-
-            <% if !current_user%>
+          <a><%= link_to "Select Plan!", plan_path(plan), class: "btn btn-primary" %></a>
+          <% if !current_user%>
+            Liked
+            <i class="far fa-heart">
+              <p><%= plan.get_upvotes.size %></p>
+            </i>
+          <%else%>
+            <%= link_to like_plan_path(plan), method: :put do %>
+              <% if @user.voted_up_on? plan %>
+                <%= link_to dislike_plan_path(plan), method: :put do %>
                   Liked
-                 <i class="far fa-heart"><p><%= plan.get_upvotes.size %></p></i>
-            <%else%>
-                  <%= link_to like_plan_path(plan), method: :put do %>
-                      <% if @user.voted_up_on? plan %>
-                          <%= link_to dislike_plan_path(plan), method: :put do %>
-                          Liked
-                          <i class="fas fa-heart"><p><%= plan.get_upvotes.size %></p></i>
-                          <% end %>
-                      <%else%>
-                           Like
-                           <i class="far fa-heart"><p><%= plan.get_upvotes.size %></p></i>
-                      <%end%>
-
-                  <% end %>
-            <%end%>
+                  <i class="fas fa-heart">
+                    <p><%= plan.get_upvotes.size %></p>
+                  </i>
+                <% end %>
+              <%else%>
+                Like
+                <i class="far fa-heart">
+                  <p><%= plan.get_upvotes.size %></p>
+                </i>
+              <%end%>
+            <% end %>
+          <%end%>
         </div>
       </div>
-  <% end %>
+    <% end %>
   </div>
-
-
   <div id="newPlanModal" class="modal">
     <div class="modal-content">
       <div>
         <p class="close">&times;</p>
       </div>
-
       <div class="form-container">
         <h2 class="text-center">Create a plan</h2>
         <%= simple_form_for @plan do |f| %>
@@ -60,10 +58,7 @@
           <%= f.submit "Create new plan", class: "btn btn-primary button-form" %>
         <% end %>
       </div>
-
-
     </div>
   </div>
-
-
 </div>
+<%= tag :meta, name: :psj, action: action_name, controller: controller_name %>
