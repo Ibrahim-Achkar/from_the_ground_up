@@ -31,4 +31,11 @@
   </div>
 </div>
 
+
 <%= link_to "Back", :back, class: "btn btn-primary" %>
+
+<% if user_signed_in? %>
+  <% if @plan.user.id == current_user.id %>
+    <%= link_to 'Destroy', plan_path(@plan), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %>
+  <% end %>
+<% end %>
