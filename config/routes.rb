@@ -5,8 +5,8 @@ Rails.application.routes.draw do
 
   resources :plans do
     member do
-    get "like", to: "plans#upvote"
-    get "dislike", to: "plans#downvote"
+    put "like", to: "plans#upvote"
+    put "dislike", to: "plans#downvote"
     end
     resources :resources, only: %i[new create destroy]
     resources :tasks, only: %i[new create delete edit update destroy]
