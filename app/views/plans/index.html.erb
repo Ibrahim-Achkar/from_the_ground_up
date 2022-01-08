@@ -10,7 +10,11 @@
     <% end %>
     <% @plans.each do |plan| %>
       <div class="plan-card">
-        <img class="card-img-top" src="..." alt="Card image cap">
+
+        <div class="plan-icon">
+          <i class="<%= find_icon(plan.category_list[0]) %>"></i>
+        </div>
+
         <div class="card-body">
           <h5 class="card-title"><%=plan.name%></h5>
           <div class = "flex-container">

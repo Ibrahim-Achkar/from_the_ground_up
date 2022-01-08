@@ -1,6 +1,8 @@
 class PlansController < ApplicationController
   before_action :set_plan, only: %i[show edit update destroy]
 
+  helper_method :find_icon
+
   def index
     @plans = Plan.all
     @categories = set_categories
@@ -57,6 +59,26 @@ class PlansController < ApplicationController
     @plan = Plan.find(params[:id])
     @plan.downvote_by current_user
     redirect_back(fallback_location: root_path)
+  end
+
+  def find_icon(plan)
+    icons = {
+      "Art" => "fas fa-palette",
+      "Cooking" => "fas fa-utensils",
+      "Finance" => "fas fa-money-bill-alt",
+      "Gaming" => "fas fa-gamepad",
+      "Gardening" => "fas fa-leaf",
+      "Health & Wellbeing" => "fas fa-notes-medical",
+      "Language" => "fas fa-language",
+      "Misc" => "fas fa-random",
+      "Music" => "fas fa-music",
+      "Professional Development" => "fas fa-medal",
+      "Science" => "fas fa-microscope",
+      "Sport & Fitness" => "far fa-futbol",
+      "Tech" => "fas fa-laptop"
+    }
+
+    icons[plan]
   end
 
   private
