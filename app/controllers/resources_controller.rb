@@ -19,6 +19,12 @@ class ResourcesController < ApplicationController
     end
   end
 
+  def destroy
+    @resource = Resource.find(params[:id])
+    @resource.destroy
+    redirect_to plan_path(params[:plan_id])
+  end
+
   private
 
   def resource_params
