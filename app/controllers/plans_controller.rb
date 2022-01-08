@@ -18,6 +18,9 @@ class PlansController < ApplicationController
     @resources = @plan.resources
 
     @resource_info = get_resource_info(@resources) if @resources
+    @goals = @plan.goals
+    @diary_entries = @plan.diary_entries
+
   end
 
   def new
