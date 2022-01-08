@@ -95,6 +95,7 @@ class PlansController < ApplicationController
       page_meta = MetaInspector.new(resource.url)
 
       page_hash = {
+        id: resource.id,
         url: page_meta.url,
         title: page_meta.title,
         description: page_meta.description,

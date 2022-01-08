@@ -1,5 +1,4 @@
 
-
 <h1><%= @plan.name %></h1>
 
 <%if user_signed_in? && @plan.user.id != current_user.id%>
@@ -57,32 +56,33 @@
 
 <h2 class="resource-heading">Resources</h2>
 <div class="resources">
-  <div class="plans">
-    <div class="row">
-      <% @resource_info.each do |resource| %>
-        <div class="col-sm-4">
-          <div class="m-3 p-3">
-            <div class="card" style="width: 18rem;">
-              <div class= "card_header">
-                <h5 class="card-title"><%= resource[:title] %></h5>
-              </div>
-              <div class="card-body">
-                <p class="card-text"><%= resource[:description] %></p>
-              </div>
-              <div class="plan-image">
-                <a href=<%= resource[:url] %> class="card-link" target="_blank">
-                  <img class="img-fluid" src=<%= resource[:image] %>>
-                </a>
-              </div>
-              <div class="card-footer">
-                <div class="card-footer-flex">
-                </div>
+  <div class="list-group">
+    <% @resource_info.each do |resource| %>
+
+        <div class="list-group-item list-group-item-action resource-card">
+          <a href="<%= resource[:url] %>">
+            <div class="dflex">
+                <img class="resource-img" src=<%= resource[:image] %>>
+              <div>
+                <h5 class="mb-1"><%= resource[:title] %></h5>
+                <p class="mb-1"><%= resource[:description] %></p>
+                <small><%= resource[:url] %></small>
               </div>
             </div>
+          </a>
+
+          <div class="resource-trash">
+            <% if user_signed_in? %>
+              <% if @plan.user.id == current_user.id %>
+                <%= link_to plan_resource_path(@plan.id, resource[:id]), method: :delete, data: { confirm: 'Are you sure?' } do %>
+                  <i class="far fa-trash-alt"></i>
+                <% end %>
+              <% end %>
+            <% end %>
           </div>
         </div>
-      <% end %>
-    </div>
+
+    <% end %>
   </div>
 </div>
 
@@ -96,8 +96,7 @@
 <%# if user owns a plan they can delete, edit plan, add/edit/delete goals, add/edit/delete resource, add/edit/delete task %>
 <% if user_signed_in? %>
   <% if @plan.user.id == current_user.id %>
-    <%= link_to 'Destroy', plan_path(@plan), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %>
     <%= link_to 'Add a New Resource!', new_plan_resource_path(@plan),  class: "btn btn-primary" %>
-
+    <%= link_to 'Delete Plan', plan_path(@plan), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %>
   <% end %>
 <% end %>
