@@ -1,4 +1,3 @@
-
 <h1><%= @plan.name %></h1>
 <h2 class="resource-heading">Resources</h2>
 <div class="resources">
@@ -30,5 +29,5 @@
     </div>
   </div>
 </div>
-
+<%= link_to "Copy Plan!", plan_copy_path(@plan), class: "btn btn-primary" %>
 <%= link_to "Back", :back, class: "btn btn-primary" %>
