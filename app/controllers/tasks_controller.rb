@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :authenticate_user!, :set_plan, :user_owns_plan?
+  before_action :authenticate_user!, :set_plan, :user_owns_plan?, :set_task
 
   def index
     @tasks = Task.where(plan: @plan)
@@ -27,7 +27,22 @@ class TasksController < ApplicationController
     end
   end
 
+  def mark
+    if @task.status == 'pending'
+      @task.status = 'complete'
+      @task.save!
+    else
+      @task.status = 'pending'
+      @task.save!
+    end
+    redirect_back(fallback_location: root_path)
+  end
+
   private
+
+  def set_task
+    @task = Task.find(params[:task_id])
+  end
 
   def set_plan
     @plan = Plan.find(params[:plan_id])
