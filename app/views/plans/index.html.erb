@@ -10,11 +10,9 @@
     <% end %>
     <% @plans.each do |plan| %>
       <div class="plan-card">
-
         <div class="plan-icon">
           <i class="<%= find_icon(plan.category_list[0]) %>"></i>
         </div>
-
         <div class="card-body">
           <h5 class="card-title"><%=plan.name%></h5>
           <div class = "flex-container">
@@ -65,4 +63,3 @@
     </div>
   </div>
 </div>
-<%= tag :meta, name: :psj, action: action_name, controller: controller_name %>
