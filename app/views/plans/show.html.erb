@@ -1,119 +1,106 @@
 <div class="container">
-<h1 class="header-font"><%= @plan.name %></h1>
+  <h1 class="header-font"><%= @plan.name %></h1>
 
-<%if user_signed_in? && @plan.user.id != current_user.id%>
-  <p class= "btn btn-primary">Clone Plan</p>
-<%end %>
-
-
-<%# GOALS - if user signed in AND owns plan they can add a new goal%>
-<div class="goals-card">
-  <h2>Goals</h2>
-    <% @goals.each do |goal| %>
-      <p><%= goal.content %></p>
-    <% end %>
-  <% if user_signed_in? %>
-    <% if @plan.user.id == current_user.id %>
-      <%= link_to 'New Goal', new_plan_goal_path(@plan),  class: "btn btn-primary" %>
-    <% end %>
-  <%end%>
-</div>
-
-<%# TASKS - if user signed in AND owns plan they can add/edit/delete a new task%>
+  <%if user_signed_in? && @plan.user.id != current_user.id%>
+    <p class= "btn btn-primary">Clone Plan</p>
+  <%end %>
 
 
-<h2>Planner</h2>
-  <ul>
-    <% @tasks.each do |task| %>
-      <li><%= task.due_date %></li>
-      <li><%= task.action %></li>
-    <% end %>
-  </ul>
-  <% if user_signed_in? %>
-    <% if @plan.user.id == current_user.id %>
-      <%= link_to 'New Task', new_plan_task_path(@plan),  class: "btn btn-primary" %>
-    <%end%>
-
-  <%end%>
-
-
-<%# DIARY ENTRIES - if user signed in AND owns plan they can add/edit/delete a diary entry%>
-<div class="diary-card">
-<h2>Learning Journal</h2>
-  <ul>
-    <% @diary_entries.each do |entry| %>
-      <li><%= link_to entry.title, plan_diary_entry_path(@plan.id , entry.id) %></li>
-    <% end %>
-  </ul>
-  <% if user_signed_in? %>
-    <% if @plan.user.id == current_user.id %>
-      <%= link_to 'New Entry', new_plan_diary_entry_path(@plan),  class: "btn btn-primary" %>
-    <%end%>
-
-  <%end%>
-</div>
-
-<div class="card-resources">
-<h2 class="resource-heading">Resources</h2>
-<div class="resources">
-  <div class="list-group">
-    <% @resource_info.each do |resource| %>
-
-        <div class="list-group-item list-group-item-action resource-card">
-          <a href="<%= resource[:url] %>">
-            <div class="dflex">
-                <img class="resource-img" src=<%= resource[:image] %>>
-              <div>
-                <h5 class="mb-1"><%= resource[:title] %></h5>
-                <p class="mb-1"><%= resource[:description] %></p>
-                <small><%= resource[:url] %></small>
-              </div>
-            </div>
-          </a>
-
-          <div class="resource-trash">
-            <% if user_signed_in? %>
-              <% if @plan.user.id == current_user.id %>
-                <%= link_to plan_resource_path(@plan.id, resource[:id]), method: :delete, data: { confirm: 'Are you sure?' } do %>
-                  <i class="far fa-trash-alt"></i>
-                <% end %>
-              <% end %>
-            <% end %>
-          </div>
-        </div>
-
-    <% end %>
-  </div>
-</div>
-
-</div> <%# closing div for resources card %>
-
-</div>
-
-
-
-
-<%= link_to "Back", :back, class: "btn btn-primary" %>
-
-<%# if user owns a plan they can delete, edit plan, add/edit/delete goals, add/edit/delete resource, add/edit/delete task %>
-<% if user_signed_in? %>
-  <% if @plan.user.id == current_user.id %>
-    <%= link_to 'Add a New Resource!', new_plan_resource_path(@plan),  class: "btn btn-primary" %>
-    <%= link_to 'Delete Plan', plan_path(@plan), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %>
-  <% end %>
-<% end %>
-
-
-<div class="card" style="width: 18rem;">
-<h2>Learning Diary </h2>
-  <div class="card-body">
-    <% @diary_entries.each do |entry| %>
-      <p class="btn btn-primary"><%= link_to entry.title, plan_diary_entry_path(@plan.id , entry.id) %></p>
-    <% end %>
+  <%# GOALS - if user signed in AND owns plan they can add a new goal%>
+  <div class="goals-card">
+    <h2>Goals</h2>
+      <% @goals.each do |goal| %>
+        <p><%= goal.content %></p>
+      <% end %>
     <% if user_signed_in? %>
       <% if @plan.user.id == current_user.id %>
-        <%= link_to 'New Entry', new_plan_diary_entry_path(@plan),  class: "btn btn-primary" %>
-      <%end%>
+        <%= link_to 'New Goal', new_plan_goal_path(@plan),  class: "btn btn-primary" %>
+      <% end %>
     <%end%>
   </div>
-</div>
+
+  <%# TASKS - if user signed in AND owns plan they can add/edit/delete a new task%>
+
+
+  <h2>Planner</h2>
+    <ul>
+      <% @tasks.each do |task| %>
+        <li><%= task.due_date %></li>
+        <li><%= task.action %></li>
+      <% end %>
+    </ul>
+    <% if user_signed_in? %>
+      <% if @plan.user.id == current_user.id %>
+        <%= link_to 'New Task', new_plan_task_path(@plan),  class: "btn btn-primary" %>
+      <%end%>
+
+    <%end%>
+
+  <div class="card" style="width: 18rem;">
+  <h2>Learning Diary </h2>
+    <div class="card-body">
+      <% @diary_entries.each do |entry| %>
+        <p class="btn btn-primary btn-block"><%= link_to entry.title, plan_diary_entry_path(@plan.id , entry.id) %></p>
+      <% end %>
+      <% if user_signed_in? %>
+        <% if @plan.user.id == current_user.id %>
+          <%= link_to 'New Entry', new_plan_diary_entry_path(@plan),  class: "btn btn-primary btn-block" %>
+        <%end%>
+      <%end%>
+    </div>
+  </div>
+
+  <div class="card-resources">
+  <h2 class="resource-heading">Resources</h2>
+  <div class="resources">
+    <div class="list-group">
+      <% @resource_info.each do |resource| %>
+
+          <div class="list-group-item list-group-item-action resource-card">
+            <a href="<%= resource[:url] %>">
+              <div class="dflex">
+                  <img class="resource-img" src=<%= resource[:image] %>>
+                <div>
+                  <h5 class="mb-1"><%= resource[:title] %></h5>
+                  <p class="mb-1"><%= resource[:description] %></p>
+                  <small><%= resource[:url] %></small>
+                </div>
+              </div>
+            </a>
+
+            <div class="resource-trash">
+              <% if user_signed_in? %>
+                <% if @plan.user.id == current_user.id %>
+                  <%= link_to plan_resource_path(@plan.id, resource[:id]), method: :delete, data: { confirm: 'Are you sure?' } do %>
+                    <i class="far fa-trash-alt"></i>
+                  <% end %>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+
+      <% end %>
+    </div>
+  </div>
+    <% if user_signed_in? %>
+      <% if @plan.user.id == current_user.id %>
+      <%= link_to 'Add a New Resource!', new_plan_resource_path(@plan),  class: "btn btn-primary" %>
+      <% end %>
+    <% end %>
+
+  </div> <%# closing div for resources card %>
+
+  </div>
+
+
+
+
+  <%= link_to "Back", :back, class: "btn btn-primary" %>
+
+  <%# if user owns a plan they can delete, edit plan, add/edit/delete goals, add/edit/delete resource, add/edit/delete task %>
+  <% if user_signed_in? %>
+    <% if @plan.user.id == current_user.id %>
+      <%= link_to 'Delete Plan', plan_path(@plan), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %>
+    <% end %>
+  <% end %>
+  </div>
