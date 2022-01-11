@@ -1,6 +1,10 @@
 class DiaryEntriesController < ApplicationController
   before_action :authenticate_user!
 
+  def show
+    @plan = Plan.find(params[:plan_id])
+    @diary_entry = DiaryEntry.find(params[:id])
+  end
 
   def new
     @plan = Plan.find(params[:plan_id])
@@ -19,6 +23,8 @@ class DiaryEntriesController < ApplicationController
       render :new
     end
   end
+
+
 
 
   private

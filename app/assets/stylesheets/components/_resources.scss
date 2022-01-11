@@ -1,0 +1,40 @@
+.resources {
+  width: 40%;
+}
+
+.resource-card a {
+  text-decoration: none;
+}
+
+.resource-img {
+  width: 120px;
+  padding-right: 16px;
+}
+
+.resource-card small {
+  color: lightgrey;
+}
+
+.resource-trash {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  opacity: 0.1;
+  transition: opacity 0.2s ease-in-out;
+  -moz-transition: opacity 0.2s ease-in-out;
+  -webkit-transition: opacity 0.2s ease-in-out;
+}
+
+.resource-trash:hover {
+  opacity: 1;
+  text-decoration: none;
+}
+
+.resource-trash:hover a {
+  text-decoration: none;
+}
+
+.dflex {
+  display: flex;
+  flex-direction: row;
+}

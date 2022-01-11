@@ -9,8 +9,14 @@
   transition: all .2s ease-in-out;
 }
 
-.plan-card:hover {
-  transform: scale(1.03);
+.plan-icon {
+  color: white;
+  font-size: 100px;
+  text-align: center;
+  background: #66806A;
+  background: linear-gradient(90deg, #66806A 60%, #B4C6A6 100%);
+  background: -moz-linear-gradient(90deg, #66806A 60%, #B4C6A6 100%);
+  background: -webkit-linear-gradient(90deg, #66806A 60%, #B4C6A6 100%);
 }
 
 .card_header {
@@ -29,5 +35,4 @@
 
 .red_heart {
   color: red;
-
 }

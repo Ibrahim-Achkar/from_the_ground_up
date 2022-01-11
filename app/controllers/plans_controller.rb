@@ -2,6 +2,8 @@ class PlansController < ApplicationController
   before_action :set_plan, only: %i[show edit update destroy]
   before_action :set_user, only: %i[index create upvote downvote copy]
 
+  helper_method :find_icon
+
   def index
     @plans = Plan.all
     @categories = set_categories
@@ -17,6 +19,9 @@ class PlansController < ApplicationController
     @tasks = @plan.tasks
     @resources = @plan.resources
     @resource_info = get_resource_info(@resources) if @resources
+    @goals = @plan.goals
+    @diary_entries = @plan.diary_entries
+
   end
 
   def new
@@ -70,6 +75,24 @@ class PlansController < ApplicationController
       # TODO: We could add an alert to tell the user plan has failed to copy.
       redirect_back(fallback_location: root_path)
     end
+
+  def find_icon(plan)
+    icons = {
+      "Art" => "fas fa-palette",
+      "Cooking" => "fas fa-utensils",
+      "Finance" => "fas fa-money-bill-alt",
+      "Gaming" => "fas fa-gamepad",
+      "Gardening" => "fas fa-leaf",
+      "Health & Wellbeing" => "fas fa-notes-medical",
+      "Language" => "fas fa-language",
+      "Misc" => "fas fa-random",
+      "Music" => "fas fa-music",
+      "Professional Development" => "fas fa-medal",
+      "Science" => "fas fa-microscope",
+      "Sport & Fitness" => "far fa-futbol",
+      "Tech" => "fas fa-laptop"
+    }
+    icons[plan]
   end
 
   private
@@ -109,6 +132,7 @@ class PlansController < ApplicationController
       page_meta = MetaInspector.new(resource.url)
 
       page_hash = {
+        id: resource.id,
         url: page_meta.url,
         title: page_meta.title,
         description: page_meta.description,

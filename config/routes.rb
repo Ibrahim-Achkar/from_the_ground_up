@@ -12,7 +12,9 @@ Rails.application.routes.draw do
     end
 
     resources :resources, only: %i[new create destroy]
-    resources :tasks, only: %i[new create delete edit update destroy]
+    resources :tasks, only: %i[new create delete edit update destroy] do
+      patch "mark"
+    end
     resources :diary_entries
     resources :goals
   end
