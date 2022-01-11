@@ -1,5 +1,6 @@
 class PlansController < ApplicationController
   before_action :set_plan, only: %i[show edit update destroy]
+  before_action :set_user, only: %i[index create upvote downvote copy]
 
   helper_method :find_icon
 
@@ -7,7 +8,6 @@ class PlansController < ApplicationController
     @plans = Plan.all
     @categories = set_categories
     @plan = Plan.new
-    @user = current_user
     if params[:search]
       @plans = Plan.search(params[:search]).order("created_at DESC")
     else
@@ -18,7 +18,6 @@ class PlansController < ApplicationController
   def show
     @tasks = @plan.tasks
     @resources = @plan.resources
-
     @resource_info = get_resource_info(@resources) if @resources
     @goals = @plan.goals
     @diary_entries = @plan.diary_entries
@@ -31,7 +30,7 @@ class PlansController < ApplicationController
 
   def create
     @plan = Plan.new(plan_params)
-    @plan.user = current_user
+    @plan.user = @user
     if @plan.save
       redirect_to plan_path(@plan)
     else
@@ -54,15 +53,28 @@ class PlansController < ApplicationController
 
   def upvote
     @plan = Plan.find(params[:id])
-    @plan.upvote_by current_user
+    @plan.upvote_by @user
     redirect_back(fallback_location: root_path)
   end
 
   def downvote
     @plan = Plan.find(params[:id])
-    @plan.downvote_by current_user
+    @plan.downvote_by @user
     redirect_back(fallback_location: root_path)
   end
+
+  def copy
+    original_plan = Plan.find(params[:plan_id])
+    @new_plan = original_plan.amoeba_dup
+    @new_plan.user = @user
+    @new_plan.name = "copy of #{original_plan.name}"
+    if @new_plan.save
+      redirect_to plan_path(@new_plan)
+    else
+      # TODO: discuss whether this is the redirect that should occur if the plan fails to save (stay on the same page).
+      # TODO: We could add an alert to tell the user plan has failed to copy.
+      redirect_back(fallback_location: root_path)
+    end
 
   def find_icon(plan)
     icons = {
@@ -80,7 +92,6 @@ class PlansController < ApplicationController
       "Sport & Fitness" => "far fa-futbol",
       "Tech" => "fas fa-laptop"
     }
-
     icons[plan]
   end
 
@@ -88,22 +99,26 @@ class PlansController < ApplicationController
 
   def set_categories
     ["Art",
-    "Cooking",
-    "Finance",
-    "Gaming",
-    "Gardening",
-    "Health & Wellbeing",
-    "Language",
-    "Misc",
-    "Music",
-    "Professional Development",
-    "Science",
-    "Sport & Fitness",
-    "Tech"]
+     "Cooking",
+     "Finance",
+     "Gaming",
+     "Gardening",
+     "Health & Wellbeing",
+     "Language",
+     "Misc",
+     "Music",
+     "Professional Development",
+     "Science",
+     "Sport & Fitness",
+     "Tech"]
   end
 
   def set_plan
     @plan = Plan.find(params[:id])
+  end
+
+  def set_user
+    @user = current_user
   end
 
   def plan_params

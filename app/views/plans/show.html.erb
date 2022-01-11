@@ -67,6 +67,7 @@
     <% end %>
   </div>
 </div>
+<%= link_to "Copy Plan!", plan_copy_path(@plan), class: "btn btn-primary" %>
 <%= link_to "Back", :back, class: "btn btn-primary" %>
 <%# if user owns a plan they can delete, edit plan, add/edit/delete goals, add/edit/delete resource, add/edit/delete task %>
 <% if user_signed_in? %>
