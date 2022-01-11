@@ -65,6 +65,8 @@ GEM
     acts_as_votable (0.13.2)
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
+    amoeba (3.2.0)
+      activerecord (>= 4.2.0)
     ast (2.4.2)
     autoprefixer-rails (10.2.5.0)
       execjs (< 2.8.0)
@@ -145,6 +147,9 @@ GEM
       domain_name (~> 0.5)
     i18n (1.8.11)
       concurrent-ruby (~> 1.0)
+    inline_svg (1.8.0)
+      activesupport (>= 3.0)
+      nokogiri (>= 1.6)
     jbuilder (2.11.3)
       activesupport (>= 5.0.0)
     kwalify (0.7.2)
@@ -339,6 +344,7 @@ PLATFORMS
 DEPENDENCIES
   acts-as-taggable-on (~> 8.1.0)
   acts_as_votable
+  amoeba
   autoprefixer-rails (= 10.2.5)
   bootsnap (>= 1.4.4)
   byebug
@@ -348,6 +354,7 @@ DEPENDENCIES
   dotenv-rails
   font-awesome-sass
   htmlbeautifier
+  inline_svg
   jbuilder (~> 2.7)
   listen (~> 3.3)
   metainspector

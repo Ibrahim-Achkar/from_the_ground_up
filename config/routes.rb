@@ -4,12 +4,17 @@ Rails.application.routes.draw do
   get '/dashboard', to: 'pages#dashboard'
 
   resources :plans do
+    get 'copy'
+
     member do
-    put "like", to: "plans#upvote"
-    put "dislike", to: "plans#downvote"
+      put "like", to: "plans#upvote"
+      put "dislike", to: "plans#downvote"
     end
+
     resources :resources, only: %i[new create destroy]
-    resources :tasks, only: %i[new create delete edit update destroy]
+    resources :tasks, only: %i[new create delete edit update destroy] do
+      patch "mark"
+    end
     resources :diary_entries
     resources :goals
   end

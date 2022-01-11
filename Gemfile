@@ -40,6 +40,12 @@ gem 'acts-as-taggable-on', '~> 8.1.0'
 # metainspector used to create cards of user resource bookmarks
 gem 'metainspector'
 
+# amoeba used to allow for granular and deep duplication of plans by users
+gem 'amoeba'
+
+# allows us to easily work with svgs
+gem 'inline_svg'
+
 gem 'autoprefixer-rails', '10.2.5'
 gem 'font-awesome-sass'
 gem 'simple_form'
