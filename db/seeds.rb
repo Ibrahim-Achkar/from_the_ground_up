@@ -6,46 +6,77 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-puts "destroying all users, plans and resources, bye bob!"
+puts "If you ran db:reset, destroying all tables, bye bob! 💣"
 
-User.destroy_all
-Plan.destroy_all
-Resource.destroy_all
+puts "Creating new users 🧑🏼🧑🏾🧔🏼🧔🏾"
+users = [{ name: 'Bob', email: 'bob@mail.com', password: 'aaaaaa' },
+         { name: 'Gazza', email: 'gazza@mail.com', password: 'aaaaaa' }]
 
-puts "creating new users and plan"
+users.each do |person|
+  user = User.create(username: person[:name], email: person[:email], password: person[:password])
+  user.save!
+  puts "User #{user.username} created with id #{user.id}!"
+end
 
-bob = User.create(username: 'Bob', email: 'bob@mail.com', password: 'aaaaaa')
-bob.save!
+puts "Creating new plans 📜📜"
+plans = ['Learning JS', "Learning to Run!", "Sewing", "Carpentry", "Sailing"]
 
-puts "User #{bob.username} created with id #{bob.id}!"
+plans.each do |name|
+  user = User.order(Arel.sql('RANDOM()')).first
+  plan = Plan.create(name: name, user_id: user.id)
+  plan.save!
+  puts "Plan #{plan.name} created with id #{plan.id}!"
+end
 
-gary = User.create(username: 'Gazza', email: 'gazza@mail.com', password: 'aaaaaa')
-gary.save!
+puts "Creating some content for the Learning JS Plan!"
+js_plan = Plan.first
 
-puts "User #{gary.username} created with id #{gary.id}!"
+puts "Adding a category and some tags! 🏴🏁🚩🏳‍🌈"
+js_plan.tag_list.add "javascript", "coding", "computing"
+js_plan.category_list.add "Technology"
+js_plan.save!
 
-coding = Plan.create(name: "Learning JS", user_id: bob.id)
-coding.save!
+puts "Creating some resources! 🍎🍔🍤"
+urls = ['https://programmingwithmosh.com/javascript/setup-eslint-and-prettier-in-your-react-project/', 'https://www.freecodecamp.org/', 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array']
 
-puts "Plan #{coding.name} created with id #{coding.id}!"
+urls.each do |url|
+  resource = Resource.create(url: url)
+  resource.plan = js_plan
+  resource.save!
+  puts "Resource with id #{resource.id} created!"
+end
 
-running = Plan.create(name: "Learning to Run!", user_id: gary.id)
-running.save!
+puts "Resources created!"
 
-puts "Plan #{coding.name} created with id #{running.id}!"
+puts "Creating some goals! 🎯🎯"
 
-puts "Creating some resources!"
+goals = ['Code my business idea', 'Get a job as a junior developer', 'Impress my friends']
 
-resource_one = Resource.create(url: 'https://programmingwithmosh.com/javascript/setup-eslint-and-prettier-in-your-react-project/')
-resource_one.plan = coding
-resource_one.save!
+goals.each do |content|
+  goal = Goal.create(content: content)
+  goal.plan = js_plan
+  goal.save!
+  puts "Goal with id #{goal.id} created!"
+end
 
-resource_two = Resource.create(url: 'https://www.freecodecamp.org/')
-resource_two.plan = coding
-resource_two.save!
+puts "Creating some tasks! 👮🏾‍♂️👮🏼‍♀️"
 
-resource_three = Resource.create(url: 'https://www.programiz.com/javascript/examples/split-array')
-resource_three.plan = coding
-resource_three.save!
+tasks = [{ due_date: "2022-01-09", action: "Complete one Code Kata" },
+         { due_date: "2022-01-12", action: "Call Paal about enrolling with Le Wagon" },
+         { due_date: "2022-01-15", action: "Watching coding garden youtube video on arrays" },
+         { due_date: "2022-02-01", action: "Complete some freecodecamp lessons" }]
 
-puts "done!"
+tasks.each do |content|
+  task = Task.create(due_date: content[:due_date], action: content[:action])
+  task.plan = js_plan
+  task.save!
+  puts "Task with id #{task.id} created!"
+end
+
+puts "Creating one diary entry! 💭"
+
+entry = DiaryEntry.create(mood: "Excited", title: "Beginning my learning journey", content: "Today I begin to learn javascript. I cannot wait to be able to build my billion dollar unicorn company and go to the mooon 🚀🌕")
+entry.plan = js_plan
+entry.save!
+
+puts "All Done!"
