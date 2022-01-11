@@ -21,7 +21,6 @@ class PlansController < ApplicationController
     @resource_info = get_resource_info(@resources) if @resources
     @goals = @plan.goals
     @diary_entries = @plan.diary_entries
-
   end
 
   def new
@@ -75,6 +74,7 @@ class PlansController < ApplicationController
       # TODO: We could add an alert to tell the user plan has failed to copy.
       redirect_back(fallback_location: root_path)
     end
+  end
 
   def find_icon(plan)
     icons = {
