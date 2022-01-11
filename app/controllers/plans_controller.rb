@@ -9,8 +9,9 @@ class PlansController < ApplicationController
     @categories = set_categories
     @plan = Plan.new
     if params[:search]
-      @plans = Plan.search(params[:search]).order("created_at DESC")
-    else
+     @plans = Plan.search(params[:search])
+     @plans = (@plans + Plan.tagged_with(params[:search])).uniq
+     else
       @plans = Plan.all.order('created_at DESC')
     end
   end
