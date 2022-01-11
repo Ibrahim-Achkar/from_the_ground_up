@@ -9,9 +9,9 @@ class PlansController < ApplicationController
     @categories = set_categories
     @plan = Plan.new
     if params[:search]
-     @plans = Plan.search(params[:search])
-     @plans = (@plans + Plan.tagged_with(params[:search])).uniq
-     else
+      @plans = Plan.search(params[:search])
+      @plans = (@plans + Plan.tagged_with(params[:search])).uniq
+    else
       @plans = Plan.all.order('created_at DESC')
     end
   end
@@ -47,7 +47,8 @@ class PlansController < ApplicationController
   end
 
   def destroy
-    @plan.destroy
+    @plan = Plan.find(params[:id])
+    @plan.destroy!
     redirect_to plans_path
   end
 

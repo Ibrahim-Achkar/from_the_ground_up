@@ -7,8 +7,8 @@ Rails.application.routes.draw do
     get 'copy'
 
     member do
-    put "like", to: "plans#upvote"
-    put "dislike", to: "plans#downvote"
+      put "like", to: "plans#upvote"
+      put "dislike", to: "plans#downvote"
     end
 
     resources :resources, only: %i[new create destroy]
