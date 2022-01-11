@@ -9,7 +9,9 @@ Rails.application.routes.draw do
     put "dislike", to: "plans#downvote"
     end
     resources :resources, only: %i[new create destroy]
-    resources :tasks, only: %i[new create delete edit update destroy]
+    resources :tasks, only: %i[new create delete edit update destroy] do
+      patch "mark"
+    end
     resources :diary_entries
     resources :goals
   end
