@@ -13,6 +13,7 @@ class Plan < ApplicationRecord
   # has_many :liking_users, class_name: 'Users', through: :liked_plans
 
   def self.search(search)
-    where("lower(name) LIKE ?", "%#{search}%")
+    #where("lower(name) LIKE ?", "%#{search}%")
+    where('name LIKE ?', "%#{search}%") + tagged_with(search)
   end
 end
