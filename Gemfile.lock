@@ -147,6 +147,9 @@ GEM
       domain_name (~> 0.5)
     i18n (1.8.11)
       concurrent-ruby (~> 1.0)
+    inline_svg (1.8.0)
+      activesupport (>= 3.0)
+      nokogiri (>= 1.6)
     jbuilder (2.11.3)
       activesupport (>= 5.0.0)
     kwalify (0.7.2)
@@ -349,6 +352,7 @@ DEPENDENCIES
   dotenv-rails
   font-awesome-sass
   htmlbeautifier
+  inline_svg
   jbuilder (~> 2.7)
   listen (~> 3.3)
   metainspector
