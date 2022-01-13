@@ -1,5 +1,13 @@
 <div class="container">
   <h1>Plans Index Page</h1>
+
+  <%= simple_form_for :search, url: plans_path, method: "GET" do |f| %>
+  <%= f.input :categories, label: "Category",  collection: @categories, as: :radio_buttons, required: false %>
+  <%= f.submit "Search", class: "btn btn-primary" %>
+  <%= link_to "Reset", plans_path  %>
+<% end %>
+
+
   <div class="cards">
     <% if user_signed_in? %>
       <a id="newPlanBtn">

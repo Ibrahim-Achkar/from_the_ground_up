@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
-  before_action :authenticate_user!, :set_plan, :user_owns_plan?, :set_task
+  before_action :authenticate_user!, :set_plan, :user_owns_plan?
+  before_action :set_task, only: %i[index mark]
 
   def index
     @tasks = Task.where(plan: @plan)
