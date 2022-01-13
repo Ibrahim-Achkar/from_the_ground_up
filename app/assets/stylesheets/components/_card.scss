@@ -6,7 +6,7 @@
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   padding: 8px;
   margin-bottom: 8px;
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 // prevent plan title from making a new line
 // and affecting card height
@@ -18,10 +18,10 @@
   color: white;
   font-size: 100px;
   text-align: center;
-  background: #66806A;
-  background: linear-gradient(90deg, #66806A 60%, #B4C6A6 100%);
-  background: -moz-linear-gradient(90deg, #66806A 60%, #B4C6A6 100%);
-  background: -webkit-linear-gradient(90deg, #66806A 60%, #B4C6A6 100%);
+  background: #66806a;
+  background: linear-gradient(90deg, #66806a 60%, #b4c6a6 100%);
+  background: -moz-linear-gradient(90deg, #66806a 60%, #b4c6a6 100%);
+  background: -webkit-linear-gradient(90deg, #66806a 60%, #b4c6a6 100%);
 }
 
 .card_header {
@@ -40,4 +40,21 @@
 
 .red_heart {
   color: red;
+}
+
+.heart-container {
+  display: flex;
+}
+
+.name-and-heart-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.heart {
+  padding-right: 1rem;
+}
+
+.heart-number {
+  margin-bottom: 0;
 }

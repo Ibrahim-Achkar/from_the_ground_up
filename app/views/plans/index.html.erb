@@ -1,17 +1,11 @@
 <div class="container">
   <h1>Plans Index Page</h1>
 
-
-
   <%= simple_form_for :search, url: plans_path, method: "GET" do |f| %>
   <%= f.input :categories, label: "Category",  collection: @categories, as: :radio_buttons, required: false %>
   <%= f.submit "Search", class: "btn btn-primary" %>
   <%= link_to "Reset", plans_path  %>
 <% end %>
-
-
-
-
 
 
   <div class="cards">
@@ -28,34 +22,38 @@
           <i class="<%= find_icon(plan.category_list[0]) %>"></i>
         </div>
         <div class="card-body">
-          <h5 class="card-title"><%=plan.name%></h5>
+          <div class="name-and-heart-container">
+            <h5 class="card-title"><%=plan.name%></h5>
+            <% if !current_user%>
+              <div class="heart-container">
+                <i class="far fa-heart heart">
+                </i>
+                <p class="heart-number"><%= plan.get_upvotes.size %></p>
+              </div>
+            <%else%>
+              <%= link_to like_plan_path(plan), method: :put do %>
+                <% if @user.voted_up_on? plan %>
+                  <%= link_to dislike_plan_path(plan), method: :put do %>
+                    <div class="heart-container">
+                      <i class="fas fa-heart heart"></i>
+                      <p class="heart-number"><%= plan.get_upvotes.size %></p>
+                    </div>
+                  <% end %>
+                <%else%>
+                  <div class="heart-container">
+                    <i class="far fa-heart heart">
+                    </i>
+                    <p class="heart-number"><%= plan.get_upvotes.size %></p>
+                  </div>
+                <%end%>
+              <% end %>
+            <%end%>
+          </div>
           <div class = "flex-container">
-            <p class="card-text">By: </p>
-            <p>Created at:</p>
+            <p class="card-text">By: <%=plan.user.username%></p>
+            <p>Created: <%=plan.created_at.strftime("%Y-%m-%d")%></p>
           </div>
           <a><%= link_to "Select Plan!", plan_path(plan), class: "btn btn-primary" %></a>
-          <% if !current_user%>
-            Liked
-            <i class="far fa-heart">
-              <p><%= plan.get_upvotes.size %></p>
-            </i>
-          <%else%>
-            <%= link_to like_plan_path(plan), method: :put do %>
-              <% if @user.voted_up_on? plan %>
-                <%= link_to dislike_plan_path(plan), method: :put do %>
-                  Liked
-                  <i class="fas fa-heart">
-                    <p><%= plan.get_upvotes.size %></p>
-                  </i>
-                <% end %>
-              <%else%>
-                Like
-                <i class="far fa-heart">
-                  <p><%= plan.get_upvotes.size %></p>
-                </i>
-              <%end%>
-            <% end %>
-          <%end%>
         </div>
       </div>
     <% end %>
