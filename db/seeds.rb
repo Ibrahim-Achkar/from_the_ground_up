@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-puts "If you ran db:reset, destroying all tables, bye bob! 💣"
+puts "If you ran db:reset then all tables have been destroyed, bye bob! 💣"
 
 puts "Creating new users 🧑🏼🧑🏾🧔🏼🧔🏾"
 users = [{ name: 'Bob', email: 'bob@mail.com', password: 'aaaaaa' },
@@ -97,8 +97,6 @@ sew_urls.each do |url|
   resource.save!
 end
 
-puts "Resources created!"
-
 puts "Creating some goals! 🎯🎯"
 
 js_goals = ['Code my business idea', 'Get a job as a junior developer', 'Impress my friends']
@@ -141,7 +139,7 @@ sew_goals.each do |content|
   goal.save!
 end
 
-puts "Creating some tasks! 👮🏾‍♂️👮🏼‍♀️"
+puts "Creating tasks! 👮🏾‍♂️👮🏼‍♀️"
 
 js_tasks = [{ due_date: "2022-01-09", action: "Complete one Code Kata" },
          { due_date: "2022-01-12", action: "Call Paal about enrolling with Le Wagon" },
@@ -198,25 +196,30 @@ sew_tasks.each do |content|
   task.save!
 end
 
-puts "Creating one diary entry! 💭"
+puts "Creating diary entries! 💭"
 
-js_entry = DiaryEntry.create(mood: "Excited", title: "Beginning my learning journey", content: "Today I begin to learn javascript. I cannot wait to be able to build my billion dollar unicorn company and go to the mooon 🚀🌕")
+js_entry = DiaryEntry.create(title: "Beginning my learning journey", content: "Today I begin to learn javascript. I cannot wait to be able to build my billion dollar unicorn company and go to the mooon 🚀🌕")
+js_entry.mood_list.add("😀")
 js_entry.plan = js_plan
 js_entry.save!
 
-run_entry = DiaryEntry.create(mood: "Motivated", title: "Starting to run, injury free", content: "Today I have chosen to start learing to run, I'm scared of the injuries but also looking forward to getting faster! 🏃‍♂️")
+run_entry = DiaryEntry.create(title: "Starting to run, injury free", content: "Today I have chosen to start learing to run, I'm scared of the injuries but also looking forward to getting faster! 🏃‍♂️")
+run_entry.mood_list.add("😎")
 run_entry.plan = run_plan
 run_entry.save!
 
-carp_entry = DiaryEntry.create(mood: "Intrigued", title: "Playing with timber", content: "I've always liked the idea of making things with timber and today I am starting my journey, I want to make a photo frame first and see where we can take it from there. I need to learn a lot about all the tools and types of wood, so I'm excited to get started and dive in! 🪑")
+carp_entry = DiaryEntry.create(title: "Playing with timber", content: "I've always liked the idea of making things with timber and today I am starting my journey, I want to make a photo frame first and see where we can take it from there. I need to learn a lot about all the tools and types of wood, so I'm excited to get started and dive in! 🪑")
+carp_entry.mood_list.add("😛")
 carp_entry.plan = carp_plan
 carp_entry.save!
 
-sail_entry = DiaryEntry.create(mood: "Scared", title: "Sailing to Tasmania - The Dream", content: "Today I woke up with a crazy idea to try and learn how to sail to Tasmania! I can't swim so I'm petrified but I'm going to join a club and buy a boat and just wing it! ⛵️")
+sail_entry = DiaryEntry.create(title: "Sailing to Tasmania - The Dream", content: "Today I woke up with a crazy idea to try and learn how to sail to Tasmania! I can't swim so I'm petrified but I'm going to join a club and buy a boat and just wing it! ⛵️")
+sail_entry.mood_list.add("🤯")
 sail_entry.plan = sail_plan
 sail_entry.save!
 
-sew_entry = DiaryEntry.create(mood: "Ouch my finger", title: "I just want to be able to sew on my own buttons", content: "I am over the exccessive cost associated with clothing alterations so I have chose to try and learn some basics myself! No more missing buttons for me! 🪡")
+sew_entry = DiaryEntry.create(title: "I just want to be able to sew on my own buttons", content: "I am over the exccessive cost associated with clothing alterations so I have chose to try and learn some basics myself! No more missing buttons for me! 🪡")
+sew_entry.mood_list.add("😫")
 sew_entry.plan = sew_plan
 sew_entry.save!
 

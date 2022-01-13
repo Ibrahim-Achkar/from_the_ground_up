@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_10_014430) do
+ActiveRecord::Schema.define(version: 2022_01_13_223517) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,7 +44,6 @@ ActiveRecord::Schema.define(version: 2022_01_10_014430) do
   end
 
   create_table "diary_entries", force: :cascade do |t|
-    t.string "mood"
     t.string "title"
     t.text "content"
     t.bigint "plan_id", null: false
