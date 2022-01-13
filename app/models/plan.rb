@@ -20,4 +20,8 @@ class Plan < ApplicationRecord
     #where("lower(name) LIKE ?", "%#{search}%")
     where('name LIKE ?', "%#{search}%") + tagged_with(search)
   end
+
+ # $categories = ["Art", "Cooking", "Finance", "Gaming", "Gardening", "Health & Wellbeing", "Language", "Misc", "Music", "Professional Develepment", "Science", "Sport & Fitness", "Tech"]
+
+
 end

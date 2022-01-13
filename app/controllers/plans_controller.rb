@@ -8,12 +8,20 @@ class PlansController < ApplicationController
     @plans = Plan.all
     @categories = set_categories
     @plan = Plan.new
+
     if params[:search]
-     @plans = Plan.search(params[:search])
-     @plans = (@plans + Plan.tagged_with(params[:search])).uniq
-     else
+      @plans = Plan.search(params[:search])
+      @plans = (@plans + Plan.tagged_with(params[:search])).uniq
+      if params["search"]["categories"]
+      @filter = params["search"]["categories"]
+      @plans = @filter.empty? ? Plan.all : Plan.all.tagged_with(@filter, any: true)
+      end
+
+    else
       @plans = Plan.all.order('created_at DESC')
     end
+
+
   end
 
   def show

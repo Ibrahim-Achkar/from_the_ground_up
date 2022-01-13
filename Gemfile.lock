@@ -192,6 +192,9 @@ GEM
     parser (3.0.3.2)
       ast (~> 2.4.1)
     pg (1.2.3)
+    pg_search (2.3.6)
+      activerecord (>= 5.2)
+      activesupport (>= 5.2)
     pry (0.13.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -353,6 +356,7 @@ DEPENDENCIES
   listen (~> 3.3)
   metainspector
   pg (~> 1.1)
+  pg_search
   pry-byebug
   pry-rails
   puma (~> 5.0)
