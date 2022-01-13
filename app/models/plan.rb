@@ -9,7 +9,6 @@ class Plan < ApplicationRecord
   has_many :diary_entries, dependent: :destroy
   has_many :tasks, dependent: :destroy
   has_many :goals, dependent: :destroy
-  has_many :likes, dependent: :destroy
 
   amoeba do
     # include_association %i[tag_list category_list resources goals]

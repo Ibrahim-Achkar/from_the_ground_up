@@ -16,13 +16,10 @@ class PlansController < ApplicationController
       @filter = params["search"]["categories"]
       @plans = @filter.empty? ? Plan.all : Plan.all.tagged_with(@filter, any: true)
       end
-
     else
       @plans = Plan.all.order('created_at DESC')
     end
-
-
-  end
+ end
 
   def show
     @tasks = @plan.tasks
@@ -55,7 +52,8 @@ class PlansController < ApplicationController
   end
 
   def destroy
-    @plan.destroy
+    @plan = Plan.find(params[:id])
+    @plan.destroy!
     redirect_to plans_path
   end
 

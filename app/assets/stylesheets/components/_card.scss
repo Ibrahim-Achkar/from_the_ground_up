@@ -1,5 +1,5 @@
 .plan-card {
-  width: 16rem;
+  width: 16.5rem;
   height: 22rem;
   background-color: white;
   border-radius: 8px;
@@ -7,6 +7,11 @@
   padding: 8px;
   margin-bottom: 8px;
   transition: all .2s ease-in-out;
+}
+// prevent plan title from making a new line
+// and affecting card height
+.plan-card h5 {
+  white-space: nowrap;
 }
 
 .plan-icon {
