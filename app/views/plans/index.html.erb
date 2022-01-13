@@ -1,7 +1,5 @@
 <div class="container">
   <h1>Plans Index Page</h1>
-
-
   <div class="cards">
     <% if user_signed_in? %>
       <a id="newPlanBtn">
@@ -23,7 +21,6 @@
           </div>
           <a><%= link_to "Select Plan!", plan_path(plan), class: "btn btn-primary" %></a>
           <% if !current_user%>
-            Liked
             <i class="far fa-heart">
               <p><%= plan.get_upvotes.size %></p>
             </i>
@@ -31,7 +28,6 @@
             <%= link_to like_plan_path(plan), method: :put do %>
               <% if @user.voted_up_on? plan %>
                 <%= link_to dislike_plan_path(plan), method: :put do %>
-                  Liked
                   <i class="fas fa-heart">
                     <p><%= plan.get_upvotes.size %></p>
                   </i>
