@@ -19,6 +19,12 @@ class GoalsController < ApplicationController
     end
   end
 
+  def update
+    @goal = Goal.find(params[:id])
+    @plan = Plan.find(params[:plan_id])
+    @goal.update(goal_params)
+    redirect_to plan_path(@plan)
+  end
 
   private
 

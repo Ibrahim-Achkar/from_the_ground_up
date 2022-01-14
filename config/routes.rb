@@ -16,7 +16,7 @@ Rails.application.routes.draw do
       patch "mark"
     end
     resources :diary_entries
-    resources :goals
+    resources :goals, only: %i[new create edit update delete destroy]
   end
 
 end
