@@ -9,6 +9,7 @@ class DiaryEntriesController < ApplicationController
   def new
     @plan = Plan.find(params[:plan_id])
     @diary_entry = DiaryEntry.new
+    @moods = set_moods
   end
 
   def create
@@ -24,13 +25,27 @@ class DiaryEntriesController < ApplicationController
     end
   end
 
-
-
-
   private
 
   def diary_entry_params
-    params.require(:diary_entry).permit(:mood, :title, :content, :user_id, :plan_id)
+    params.require(:diary_entry).permit(:mood_list, :title, :content, :user_id, :plan_id)
   end
 
+  def set_moods
+    ["🙂",
+     "😀",
+     "😛",
+     "😂",
+     "😎",
+     "🤨",
+     "😐",
+     "😣",
+     "😥",
+     "😫",
+     "😨",
+     "😡",
+     "😴",
+     "🤯",
+     "🤪"]
+  end
 end

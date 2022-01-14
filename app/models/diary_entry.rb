@@ -1,5 +1,6 @@
 class DiaryEntry < ApplicationRecord
-  validates :mood, :title, :content, presence: true
+  acts_as_taggable_on :moods
+  validates :mood_list, :title, :content, presence: true
 
   belongs_to :plan
 end
