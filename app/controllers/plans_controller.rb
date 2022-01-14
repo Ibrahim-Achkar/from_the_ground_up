@@ -13,13 +13,13 @@ class PlansController < ApplicationController
       @plans = Plan.search(params[:search])
       @plans = (@plans + Plan.tagged_with(params[:search])).uniq
       if params["search"]["categories"]
-      @filter = params["search"]["categories"]
-      @plans = @filter.empty? ? Plan.all : Plan.all.tagged_with(@filter, any: true)
+        @filter = params["search"]["categories"]
+        @plans = @filter.empty? ? Plan.all : Plan.all.tagged_with(@filter, any: true)
       end
     else
       @plans = Plan.all.order('created_at DESC')
     end
- end
+  end
 
   def show
     @tasks = @plan.tasks
@@ -27,6 +27,10 @@ class PlansController < ApplicationController
     @resource_info = get_resource_info(@resources) if @resources
     @goals = @plan.goals
     @diary_entries = @plan.diary_entries
+    @task = Task.new
+    @resource = Resource.new
+    @diary_entry = DiaryEntry.new
+    @moods = set_moods
   end
 
   def new
@@ -149,5 +153,23 @@ class PlansController < ApplicationController
       resource_info_array.push(page_hash)
     end
     resource_info_array
+  end
+
+  def set_moods
+    ["🙂",
+     "😀",
+     "😛",
+     "😂",
+     "😎",
+     "🤨",
+     "😐",
+     "😣",
+     "😥",
+     "😫",
+     "😨",
+     "😡",
+     "😴",
+     "🤯",
+     "🤪"]
   end
 end
