@@ -19,7 +19,12 @@
     <% @plans.each do |plan| %>
       <div class="plan-card">
         <div class="plan-icon">
-          <i class="<%= find_icon(plan.category_list[0]) %>"></i>
+          <div class="pattern">
+            <%= image_tag("patterns/pattern_#{rand(0..36)}.png") %>
+          </div>
+          <div class="icon">
+            <i class="<%= find_icon(plan.category_list[0]) %>"></i>
+          </div>
         </div>
         <div class="card-body">
           <div class="name-and-heart-container">

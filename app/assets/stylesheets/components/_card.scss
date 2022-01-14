@@ -18,10 +18,26 @@
   color: white;
   font-size: 100px;
   text-align: center;
-  background: #66806a;
-  background: linear-gradient(90deg, #66806a 60%, #b4c6a6 100%);
-  background: -moz-linear-gradient(90deg, #66806a 60%, #b4c6a6 100%);
-  background: -webkit-linear-gradient(90deg, #66806a 60%, #b4c6a6 100%);
+  position: relative;
+}
+
+.icon {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  text-shadow: 0px 0px 15px rgb(44, 44, 44);
+}
+
+.pattern {
+  width: 248px;
+  height: 150px;
+  overflow: hidden;
+  opacity: 0.3;
+  transition: 0.2s;
+}
+
+.plan-card:hover .pattern {
+  opacity: 1;
 }
 
 .card_header {
