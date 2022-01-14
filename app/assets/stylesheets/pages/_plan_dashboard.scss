@@ -1,14 +1,11 @@
-
-.header-font {
-  padding: 16px;
-}
 .goals-card {
-  border: solid 1px black;
-  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+
 }
 
-.card-resources {
-  padding: 16px;
-   border: solid 1px black;
-
+.goals {
+  background-color: white;
+  border-radius: 4px;
+  padding: 16px, 4px;
 }
