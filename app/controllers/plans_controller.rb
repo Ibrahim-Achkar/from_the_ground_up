@@ -90,7 +90,7 @@ class PlansController < ApplicationController
   def find_icon(plan)
     icons = {
       "Art" => "fas fa-palette",
-      "Cooking" =>  "fas fa-utensils",
+      "Cooking" => "fas fa-utensils",
       "Finance" => "fas fa-money-bill-alt",
       "Gaming" => "fas fa-gamepad",
       "Gardening" => "fas fa-leaf",
