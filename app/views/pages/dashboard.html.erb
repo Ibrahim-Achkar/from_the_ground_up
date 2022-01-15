@@ -26,17 +26,19 @@
                             </div>
                           </div>
                             <div class="card-body">
-                              <div class="name-and-heart-container">
-                               <h5 class="card-title"><%=plan.name%></h5>
-                                <div>
-                                  <i class="fas fa-heart"><p><%= plan.get_upvotes.size %></p></i>
-                                </div>
-                              </div>
+                              <h5 class="card-title"><%=plan.name%></h5>
                                 <div class = "flex-container">
                                   <p class="card-text">By: <%=plan.user.username%></p>
                                   <p>Created: <%=plan.created_at.strftime("%Y-%m-%d")%></p>
                                 </div>
                                 <a><%= link_to "Select Plan!", plan_path(plan), class: "btn btn-primary" %></a>
+                                <div class="name-and-heart-container">
+                                  <div class="heart-container">
+                                      <i class="fas fa-heart heart"></i>
+                                      <p class="heart-number"><%= plan.get_upvotes.size %></p>
+                                  </div>
+                                </div>
+
                             </div>
                           </div>
                         </div>
@@ -71,17 +73,20 @@
                               </div>
                             </div>
                               <div class="card-body">
-                                <div class="name-and-heart-container">
                                   <h5 class="card-title"><%=plan.name%></h5>
-                                    <div>
-                                      <i class="fas fa-heart"><p><%= plan.get_upvotes.size %></p></i>
-                                    </div>
-                                </div>
+
                                   <div class = "flex-container">
                                     <p class="card-text">By: <%=plan.user.username%></p>
                                     <p>Created: <%=plan.created_at.strftime("%Y-%m-%d")%></p>
                                   </div>
                                     <a><%= link_to "Select Plan!", plan_path(plan), class: "btn btn-primary" %></a>
+                                  <div class="name-and-heart-container">
+                                    <div class="heart-container">
+                                      <i class="fas fa-heart heart"></i>
+                                      <p class="heart-number"><%= plan.get_upvotes.size %></p>
+                                    </div>
+                                  </div>
+
                               </div>
                             </div>
                          </div>

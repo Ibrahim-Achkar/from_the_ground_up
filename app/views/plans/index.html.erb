@@ -28,8 +28,16 @@
           </div>
         </div>
         <div class="card-body">
+          <h5 class="card-title"><%=plan.name%></h5>
+          <div class = "flex-container">
+            <p class="card-text">By: <%=plan.user.username%></p>
+            <p>Created: <%=plan.created_at.strftime("%Y-%m-%d")%></p>
+          </div>
+
+
+          <a><%= link_to "Select Plan!", plan_path(plan), class: "btn btn-primary" %></a>
+
           <div class="name-and-heart-container">
-            <h5 class="card-title"><%=plan.name%></h5>
             <% if !current_user%>
               <div class="heart-container">
                 <i class="far fa-heart heart">
@@ -55,11 +63,7 @@
               <% end %>
             <%end%>
           </div>
-          <div class = "flex-container">
-            <p class="card-text">By: <%=plan.user.username%></p>
-            <p>Created: <%=plan.created_at.strftime("%Y-%m-%d")%></p>
-          </div>
-          <a><%= link_to "Select Plan!", plan_path(plan), class: "btn btn-primary" %></a>
+
         </div>
       </div>
     <% end %>

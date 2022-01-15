@@ -63,8 +63,8 @@
 }
 
 .name-and-heart-container {
-  display: flex;
-  justify-content: space-between;
+  float: right;
+  padding-top: 8px;
 }
 
 .heart {
@@ -73,4 +73,8 @@
 
 .heart-number {
   margin-bottom: 0;
+}
+
+.card-title {
+
 }
