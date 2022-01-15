@@ -6,14 +6,13 @@
   text-decoration: none;
 }
 
-.resource-img {
-  width: 120px;
+.resource-img img {
+  width: 150px;
+  height: 150px;
   padding-right: 16px;
+  object-fit: cover;
 }
 
-.resource-card small {
-  color: lightgrey;
-}
 
 .resource-trash {
   position: absolute;
@@ -37,4 +36,27 @@
 .dflex {
   display: flex;
   flex-direction: row;
+}
+.resource-title, .resource-link {
+  width: 500px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.resource-link {
+  color: lightgrey;
+  font-size: 0.8em;
+  margin: 0;
+}
+
+.resource-description {
+  width: 500px;
+  height: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.resource-resouces {
+  display:flex;
+  justify-content: space-between;
 }

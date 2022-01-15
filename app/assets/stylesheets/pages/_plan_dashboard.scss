@@ -1,14 +1,79 @@
+.goals-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  border-radius: 4px;
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+.goals {
+  background-color: white;
+  border-radius: 4px;
+  padding: 16px, 4px;
+}
 
 .header-font {
   padding: 16px;
+  text-align: center;
 }
-.goals-card {
-  border: solid 1px black;
+
+.goals-button, .goals-header, .goals-card p {
+  margin: 0;
+}
+
+.planner-card, .learning-card {
+  background-color: white;
+  border-radius: 4px;
   padding: 16px;
+  margin-bottom: 24px;
+}
+.diary-entry {
+  background-color: $dark-green;
+  margin-bottom: 4px;
+  padding: 4px;
+  text-align: center;
+}
+
+.diary-entry a {
+  color: $white;
+}
+
+.diary-btn {
+  width: 100%;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  margin-top: 8px;
 }
 
 .card-resources {
+  background-color: white;
   padding: 16px;
-   border: solid 1px black;
+  border-radius: 4px;
+}
+.bookmark-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer-btns {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  margin-top: 24px;
+}
+
+.goals-card p {
+  background-color: $light-green;
+  padding: 4px 12px;
+  border-radius: 16px;
+}
+
+.header .clone-btn {
+  float: right;
+  top: 20px;
+  position: relative;
+  display: inline;
 
 }
