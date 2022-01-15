@@ -1,6 +1,7 @@
 class PlansController < ApplicationController
   before_action :set_plan, only: %i[show edit update destroy]
   before_action :set_user, only: %i[index create upvote downvote copy]
+  before_action :set_categories
 
   helper_method :find_icon
 
