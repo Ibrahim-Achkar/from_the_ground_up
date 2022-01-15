@@ -1,57 +1,77 @@
 <div class="container">
-  <h1 class="header-font"><%= @plan.name %></h1>
-  <%if user_signed_in? && @plan.user.id != current_user.id%>
-    <p class= "btn btn-primary">Clone Plan</p>
-  <%end %>
+  <div class="header">
+
+    <%if user_signed_in? && @plan.user.id != current_user.id%>
+       <%= link_to 'Clone Plan', plan_copy_path(@plan.id), class: "clone-btn btn btn-primary" %>
+    <%end %>
+    <h1 class="header-font"><%= @plan.name %></h1>
+  </div>
   <%# GOALS - if user signed in AND owns plan they can add a new goal%>
   <div class="goals-card">
-    <h2>Goals</h2>
+    <h2 class= "goals-header">Goals</h2>
     <% @goals.each do |goal| %>
       <p><%= goal.content %></p>
     <% end %>
     <% if user_signed_in? %>
-      <p id="goalsEditButton" class= "btn btn-primary">Edit Goals</p>
+      <span id="goalsEditButton" class= "goals-button btn btn-primary">Edit Goals</span>
     <%end%>
   </div>
-  <%# TASKS - if user signed in AND owns plan they can add/edit/delete a new task%>
-  <h2>Planner</h2>
-  <ul>
-    <% @tasks.each do |task| %>
-      <li><%= task.due_date %></li>
-      <li><%= task.action %></li>
-    <% end %>
-  </ul>
-  <% if user_signed_in? %>
-    <% if @plan.user.id == current_user.id %>
-      <p id="taskAddButton" class= "btn btn-primary">Add Task</p>
-    <%end%>
-  <%end%>
-  <div class="card" style="width: 18rem;">
-    <h2>Learning Diary </h2>
-    <div class="card-body">
-      <% @diary_entries.each do |entry| %>
-        <p class="btn btn-primary btn-block"><%= link_to entry.title, plan_diary_entry_path(@plan.id , entry.id) %></p>
-      <% end %>
-      <% if user_signed_in? %>
-        <% if @plan.user.id == current_user.id %>
-          <p id="diaryAddButton" class= "btn btn-primary">New Diary Entry</p>
+</div> <%# container closing div%>
+
+<div class="container">
+  <div class="row">
+    <div class="col-4">
+      <div class="planner-card">
+        <h2>Planner</h2>
+        <ul>
+          <% @tasks.each do |task| %>
+            <li><%= task.action %> <br> <%= task.due_date %></li>
+          <% end %>
+        </ul>
+        <% if user_signed_in? %>
+          <% if @plan.user.id == current_user.id %>
+            <p id="taskAddButton" class= "btn btn-primary">Add Task</p>
+          <%end%>
         <%end%>
-      <%end%>
-    </div>
-  </div>
-  <div class="card-resources">
-    <h2 class="resource-heading">Resources</h2>
-    <div class="resources">
-      <div class="list-group">
-        <% @resource_info.each do |resource| %>
+      </div>
+      <div class="learning-card">
+        <h2>Learning Diary </h2>
+        <div class="card-body">
+          <% @diary_entries.each do |entry| %>
+            <div class="diary-entry"><%= link_to entry.title, plan_diary_entry_path(@plan.id , entry.id) %></div>
+          <% end %>
+          <% if user_signed_in? %>
+            <% if @plan.user.id == current_user.id %>
+              <p id="diaryAddButton" class= "diary-btn btn btn-primary">New Diary Entry</p>
+            <%end%>
+          <%end%>
+        </div>
+      </div>
+    </div> <%# column closing div %>
+    <div class="col-8">
+      <div class="card-resources">
+        <div class="bookmark-header">
+          <h2 class="resource-heading">My Bookmarks</h2>
+            <% if user_signed_in? %>
+              <% if @plan.user.id == current_user.id %>
+                <p id="resourceAddButton" class= "btn btn-primary">Add Resource</p>
+              <% end %>
+            <% end %>
+        </div>
+        <div class="list-group">
+          <% @resource_info.each do |resource| %>
           <div class="list-group-item list-group-item-action resource-card">
             <a href="<%= resource[:url] %>">
               <div class="dflex">
-                <img class="resource-img" src=<%= resource[:image] %>>
-                <div>
-                  <h5 class="mb-1"><%= resource[:title] %></h5>
-                  <p class="mb-1"><%= resource[:description] %></p>
-                  <small><%= resource[:url] %></small>
+                <div class="resource-img">
+                  <img src=<%= resource[:image] %>>
+                </div>
+                <div class="resource-resources">
+                  <div>
+                    <h5 class="resource-title mb-1"><%= resource[:title] %></h5>
+                    <p class="resource-description mb-1"><%= resource[:description] %></p>
+                  </div>
+                  <p class="resource-link"><%= resource[:url] %></p>
                 </div>
               </div>
             </a>
@@ -66,23 +86,22 @@
             </div>
           </div>
         <% end %>
-      </div>
     </div>
-    <% if user_signed_in? %>
-      <% if @plan.user.id == current_user.id %>
-        <p id="resourceAddButton" class= "btn btn-primary">Add Resource</p>
-      <% end %>
-    <% end %>
   </div>
-  <%# closing div for resources card %>
-</div>
-<%= link_to "Back", :back, class: "btn btn-primary" %>
-<%# if user owns a plan they can delete, edit plan, add/edit/delete goals, add/edit/delete resource, add/edit/delete task %>
-<% if user_signed_in? %>
-  <% if @plan.user.id == current_user.id %>
-    <%= link_to 'Delete Plan', plan_path(@plan), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %>
+    </div>
+  </div> <%# row closing div %>
+</div> <%# container closing div %>
+  <%# TASKS - if user signed in AND owns plan they can add/edit/delete a new task%>
+
+<div class="container footer-btns">
+  <%= link_to "Back", :back, class: "btn btn-primary" %>
+  <%# if user owns a plan they can delete, edit plan, add/edit/delete goals, add/edit/delete resource, add/edit/delete task %>
+  <% if user_signed_in? %>
+    <% if @plan.user.id == current_user.id %>
+      <%= link_to 'Delete Plan', plan_path(@plan), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+    <% end %>
   <% end %>
-<% end %>
+</div>
 </div>
 <div id="goalModal" class="modal">
   <div class="modal-content">
@@ -100,6 +119,8 @@
     </div>
   </div>
 </div>
+
+
 <div id="tasksModal" class="modal">
   <div class="modal-content">
     <div>
@@ -115,6 +136,8 @@
     </div>
   </div>
 </div>
+
+
 <div id="resourcesModal" class="modal">
   <div class="modal-content">
     <div>
@@ -129,6 +152,8 @@
     </div>
   </div>
 </div>
+
+
 <div id="diaryModal" class="modal">
   <div class="modal-content">
     <div>
