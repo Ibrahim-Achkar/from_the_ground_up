@@ -8,47 +8,47 @@
 
   <div class="tab-content">
     <div class="tab-pane active" id="navtabs1">
-
       <h2 class="m-3 p-3 top-margin">Hi <%= @user.username%></h2>
-      <div class="plan-and-profile">
-        <div class="plans">
-          <div class="row">
-            <% @plans.each do |plan| %>
-              <div class="col-sm-4">
-                <div class="m-3 p-3">
-                  <div class="card" style="width: 18rem;">
-                   <div class= "card_header">
-                         <div>
-                           <h5 class="card-title"><%= plan.name %></h5>
-                         </div>
-                          <div>
-                           <i class="fas fa-heart"><p><%= plan.get_upvotes.size %></p></i>
+        <div class="plan-and-profile">
+          <div class="plans">
+            <div class="row">
+              <% @plans.each do |plan| %>
+               <div class="col-sm-3">
+                  <div class="m-3 p-3">
+                     <div  style="width: 18rem;">
+                       <div class="plan-card">
+                          <div class="plan-icon">
+                            <div class="pattern">
+                              <%= image_tag("patterns/pattern_#{rand(0..36)}.png") %>
+                            </div>
+                            <div class="icon">
+                              <i class="<%= find_icon(plan.category_list[0]) %>"></i>
+                            </div>
                           </div>
-                    </div>
-                      <div class="plan-image">
-                        <img class="img-fluid" src="https://source.unsplash.com/C6oPXOatFD8">
-                      </div>
-                        <div class="card-footer">
-                          <div class="card-footer-flex">
-                              <div>
-                                <p>By <%= plan.user.username %></p>
+                            <div class="card-body">
+                              <div class="name-and-heart-container">
+                               <h5 class="card-title"><%=plan.name%></h5>
+                                <div>
+                                  <i class="fas fa-heart"><p><%= plan.get_upvotes.size %></p></i>
+                                </div>
                               </div>
-                              <div>
-                                <p style="color:grey; font-size: 12px;">created at <%= plan.created_at.to_date %></p>
-                              </div>
+                                <div class = "flex-container">
+                                  <p class="card-text">By: <%=plan.user.username%></p>
+                                  <p>Created: <%=plan.created_at.strftime("%Y-%m-%d")%></p>
+                                </div>
+                                <a><%= link_to "Select Plan!", plan_path(plan), class: "btn btn-primary" %></a>
+                            </div>
                           </div>
-                              <div class="plan_button">
-                                <button type="button" class="btn btn-warning btn-lg btn-block">select plan</button>
-                              </div>
                         </div>
+                      </div>
                     </div>
-                </div>
-              </div>
-            <% end %>
+              <% end %>
           </div>
         </div>
       </div>
     </div>
+
+
      <div class="tab-pane fade" id="navtabs2">
        <h1 id="liked-plans" class="m-3 p-3 top-margin"><%= @user.username%>'s liked plans</h1>
         <div class="plan-and-profile">
@@ -58,36 +58,35 @@
                   <h1>You have no liked plans</h1>
                 <%else%>
                    <% @user.find_up_voted_items.each do |plan| %>
-                  <div class="col-sm-4">
-                    <div class="m-3 p-3">
-                       <div class="card" style="width: 18rem;">
-                          <div class= "card_header">
-                            <div>
-                              <h5 class="card-title"><%= plan.name %></h5>
-                            </div>
-                              <div>
-                                <i class="fas fa-heart"><p><%= plan.get_upvotes.size %></p></i>
+                    <div class="col-sm-3">
+                      <div class="m-3 p-3">
+                        <div style="width: 18rem;">
+                          <div class="plan-card">
+                            <div class="plan-icon">
+                              <div class="pattern">
+                                 <%= image_tag("patterns/pattern_#{rand(0..36)}.png") %>
+                              </div>
+                              <div class="icon">
+                               <i class="<%= find_icon(plan.category_list[0]) %>"></i>
                               </div>
                             </div>
-                              <div class="plan-image">
-                                <img class="img-fluid" src="https://source.unsplash.com/C6oPXOatFD8">
-                              </div>
-                                <div class="card-footer">
-                                  <div class="card-footer-flex">
-                                     <div>
-                                        <p>By <%= plan.user.username %></p>
-                                     </div>
-                                     <div>
-                                        <p style="color:grey; font-size: 12px;">created at <%= plan.created_at.to_date %></p>
-                                     </div>
-                                  </div>
-                                      <div class="plan_button">
-                                          <button type="button" class="btn btn-warning btn-lg btn-block">select plan</button>
-                                      </div>
+                              <div class="card-body">
+                                <div class="name-and-heart-container">
+                                  <h5 class="card-title"><%=plan.name%></h5>
+                                    <div>
+                                      <i class="fas fa-heart"><p><%= plan.get_upvotes.size %></p></i>
+                                    </div>
                                 </div>
-                          </div>
+                                  <div class = "flex-container">
+                                    <p class="card-text">By: <%=plan.user.username%></p>
+                                    <p>Created: <%=plan.created_at.strftime("%Y-%m-%d")%></p>
+                                  </div>
+                                    <a><%= link_to "Select Plan!", plan_path(plan), class: "btn btn-primary" %></a>
+                              </div>
+                            </div>
+                         </div>
+                        </div>
                       </div>
-                    </div>
                   <% end %>
                  <%end%>
               </div>

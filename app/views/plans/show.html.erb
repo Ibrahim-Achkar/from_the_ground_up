@@ -1,6 +1,5 @@
 <div class="container">
   <div class="header">
-
     <%if user_signed_in? && @plan.user.id != current_user.id%>
        <%= link_to 'Clone Plan', plan_copy_path(@plan.id), class: "clone-btn btn btn-primary" %>
     <%end %>
