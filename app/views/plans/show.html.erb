@@ -1,7 +1,7 @@
 <div class="container">
   <h1 class="header-font"><%= @plan.name %></h1>
   <%if user_signed_in? && @plan.user.id != current_user.id%>
-    <p class= "btn btn-primary">Clone Plan</p>
+    <%= link_to "Copy Plan!", plan_copy_path(@plan), class: "btn btn-primary" %>
   <%end %>
   <%# GOALS - if user signed in AND owns plan they can add a new goal%>
   <div class="goals-card">
@@ -9,7 +9,7 @@
     <% @goals.each do |goal| %>
       <p><%= goal.content %></p>
     <% end %>
-    <% if user_signed_in? %>
+    <% if @plan.user.id == current_user.id %>
       <p id="goalsEditButton" class= "btn btn-primary">Edit Goals</p>
     <%end%>
   </div>

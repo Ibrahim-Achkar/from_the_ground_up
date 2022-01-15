@@ -32,7 +32,7 @@ import { closeModals } from './plan/closeModals';
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
-  // function to load modal was included here because js was not being loaded when navigating to plan, then back to plan index (modal could not be clicked).
+  // only load this modal if we are in plans controller and index action
   if (
     document.getElementsByClassName('plans').length > 0 &&
     document.getElementsByClassName('index').length > 0
@@ -40,12 +40,14 @@ document.addEventListener('turbolinks:load', () => {
     loadModal();
   }
 
+  // only load these modals if we have the owning user logged in, we are in the plans controller and we are in the show action
   if (
+    document.getElementsByClassName('correct_user').length > 0 &&
     document.getElementsByClassName('plans').length > 0 &&
     document.getElementsByClassName('show').length > 0
   ) {
-    loadTasksModal();
     loadGoalsModal();
+    loadTasksModal();
     loadResourcesModal();
     loadDiaryEntriesModal();
     closeModals();
