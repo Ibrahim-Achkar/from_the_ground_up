@@ -1,7 +1,7 @@
 <div class="container">
   <div class="header">
     <%if user_signed_in? && @plan.user.id != current_user.id%>
-       <%= link_to 'Clone Plan', plan_copy_path(@plan.id), class: "clone-btn btn btn-primary" %>
+      <%= link_to 'Clone Plan', plan_copy_path(@plan.id), class: "clone-btn btn btn-primary" %>
     <%end %>
     <h1 class="header-font"><%= @plan.name %></h1>
   </div>
@@ -11,27 +11,71 @@
     <% @goals.each do |goal| %>
       <p><%= goal.content %></p>
     <% end %>
-    <% if user_signed_in? %>
+    <% if @plan.user.id == current_user.id %>
       <span id="goalsEditButton" class= "goals-button btn btn-primary">Edit Goals</span>
     <%end%>
   </div>
-</div> <%# container closing div%>
-
+</div>
+<%# container closing div%>
 <div class="container">
   <div class="row">
     <div class="col-4">
       <div class="planner-card">
-        <h2>Planner</h2>
-        <ul>
-          <% @tasks.each do |task| %>
-            <li><%= task.action %> <br> <%= task.due_date %></li>
-          <% end %>
-        </ul>
-        <% if user_signed_in? %>
-          <% if @plan.user.id == current_user.id %>
-            <p id="taskAddButton" class= "btn btn-primary">Add Task</p>
+        <div class="heading-button-wrapper">
+          <h2>Planner</h2>
+          <% if user_signed_in? %>
+            <% if @plan.user.id == current_user.id %>
+              <p id="taskAddButton" class= "btn btn-primary">Add Task</p>
+            <%end%>
           <%end%>
-        <%end%>
+        </div>
+        <div class="table-wrapper">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Task</th>
+                <th scope="col">Due Date</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @tasks.filter{ |task| task.status == 'pending'}.sort_by { |task|  task.due_date.to_datetime  }.each do |task| %>
+                <tr>
+                  <td><%= task.action %> </td>
+                  <td> <%= task.due_date %></td>
+                  <td>
+                    <%  if task.status == 'pending' %>
+                      <%= link_to plan_task_mark_path(@plan, task), method: 'patch', class: "checkbox" do %>
+                        <i class="far fa-square"></i>
+                      <% end %>
+                    <% else %>
+                      <%= link_to plan_task_mark_path(@plan, task), method: 'patch', class: "checkbox" do %>
+                        <i class="far fa-check-square"></i>
+                      <% end %>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+              <% @tasks.filter{ |task| task.status == 'complete'}.sort_by { |task|  task.due_date.to_datetime  }.each do |task| %>
+                <tr>
+                  <td><%= task.action %> </td>
+                  <td> <%= task.due_date %></td>
+                  <td>
+                    <%  if task.status == 'pending' %>
+                      <%= link_to plan_task_mark_path(@plan, task), method: 'patch', class: "checkbox" do %>
+                        <i class="far fa-square"></i>
+                      <% end %>
+                    <% else %>
+                      <%= link_to plan_task_mark_path(@plan, task), method: 'patch', class: "checkbox" do %>
+                        <i class="far fa-check-square"></i>
+                      <% end %>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
       </div>
       <div class="learning-card">
         <h2>Learning Diary </h2>
@@ -46,52 +90,54 @@
           <%end%>
         </div>
       </div>
-    </div> <%# column closing div %>
+    </div>
+    <%# column closing div %>
     <div class="col-8">
       <div class="card-resources">
         <div class="bookmark-header">
           <h2 class="resource-heading">My Bookmarks</h2>
-            <% if user_signed_in? %>
-              <% if @plan.user.id == current_user.id %>
-                <p id="resourceAddButton" class= "btn btn-primary">Add Resource</p>
-              <% end %>
+          <% if user_signed_in? %>
+            <% if @plan.user.id == current_user.id %>
+              <p id="resourceAddButton" class= "btn btn-primary">Add Resource</p>
             <% end %>
+          <% end %>
         </div>
         <div class="list-group">
           <% @resource_info.each do |resource| %>
-          <div class="list-group-item list-group-item-action resource-card">
-            <a href="<%= resource[:url] %>">
-              <div class="dflex">
-                <div class="resource-img">
-                  <img src=<%= resource[:image] %>>
-                </div>
-                <div class="resource-resources">
-                  <div>
-                    <h5 class="resource-title mb-1"><%= resource[:title] %></h5>
-                    <p class="resource-description mb-1"><%= resource[:description] %></p>
+            <div class="list-group-item list-group-item-action resource-card">
+              <a href="<%= resource[:url] %>">
+                <div class="dflex">
+                  <div class="resource-img">
+                    <img src=<%= resource[:image] %>>
                   </div>
-                  <p class="resource-link"><%= resource[:url] %></p>
+                  <div class="resource-resources">
+                    <div>
+                      <h5 class="resource-title mb-1"><%= resource[:title] %></h5>
+                      <p class="resource-description mb-1"><%= resource[:description] %></p>
+                    </div>
+                    <p class="resource-link"><%= resource[:url] %></p>
+                  </div>
                 </div>
-              </div>
-            </a>
-            <div class="resource-trash">
-              <% if user_signed_in? %>
-                <% if @plan.user.id == current_user.id %>
-                  <%= link_to plan_resource_path(@plan.id, resource[:id]), method: :delete, data: { confirm: 'Are you sure?' } do %>
-                    <i class="far fa-trash-alt"></i>
+              </a>
+              <div class="resource-trash">
+                <% if user_signed_in? %>
+                  <% if @plan.user.id == current_user.id %>
+                    <%= link_to plan_resource_path(@plan.id, resource[:id]), method: :delete, data: { confirm: 'Are you sure?' } do %>
+                      <i class="far fa-trash-alt"></i>
+                    <% end %>
                   <% end %>
                 <% end %>
-              <% end %>
+              </div>
             </div>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
-    </div>
-  </div> <%# row closing div %>
-</div> <%# container closing div %>
-  <%# TASKS - if user signed in AND owns plan they can add/edit/delete a new task%>
-
+  <%# row closing div %>
+</div>
+<%# container closing div %>
+<%# TASKS - if user signed in AND owns plan they can add/edit/delete a new task%>
 <div class="container footer-btns">
   <%= link_to "Back", :back, class: "btn btn-primary" %>
   <%# if user owns a plan they can delete, edit plan, add/edit/delete goals, add/edit/delete resource, add/edit/delete task %>
@@ -118,8 +164,6 @@
     </div>
   </div>
 </div>
-
-
 <div id="tasksModal" class="modal">
   <div class="modal-content">
     <div>
@@ -135,8 +179,6 @@
     </div>
   </div>
 </div>
-
-
 <div id="resourcesModal" class="modal">
   <div class="modal-content">
     <div>
@@ -151,8 +193,6 @@
     </div>
   </div>
 </div>
-
-
 <div id="diaryModal" class="modal">
   <div class="modal-content">
     <div>
