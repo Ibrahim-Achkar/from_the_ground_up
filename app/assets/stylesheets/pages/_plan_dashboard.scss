@@ -19,16 +19,31 @@
   text-align: center;
 }
 
-.goals-button, .goals-header, .goals-card p {
+.goals-button,
+.goals-header,
+.goals-card p {
   margin: 0;
 }
 
-.planner-card, .learning-card {
+.planner-card,
+.learning-card {
   background-color: white;
   border-radius: 4px;
   padding: 16px;
   margin-bottom: 24px;
 }
+
+.heading-button-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.table-wrapper {
+  max-height: 500px;
+  overflow: auto;
+  display: inline-block;
+}
+
 .diary-entry {
   background-color: $dark-green;
   margin-bottom: 4px;
@@ -75,5 +90,4 @@
   top: 20px;
   position: relative;
   display: inline;
-
 }
