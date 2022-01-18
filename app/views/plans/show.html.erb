@@ -11,9 +11,9 @@
     <% @goals.each do |goal| %>
       <p><%= goal.content %></p>
     <% end %>
-    <% if @plan.user.id == current_user.id %>
-      <span id="goalsEditButton" class= "goals-button btn btn-primary">Edit Goals</span>
-    <%end%>
+      <% if current_user && @plan.user.id == current_user.id %>
+        <span id="goalsEditButton" class= "goals-button btn btn-primary">Edit Goals</span>
+      <%end%>
   </div>
 </div>
 <%# container closing div%>
@@ -44,11 +44,11 @@
                   <td><%= task.action %> </td>
                   <td> <%= task.due_date %></td>
                   <td>
-                    <%  if @plan.user.id == current_user.id && task.status == 'pending' %>
+                    <%  if current_user && @plan.user.id == current_user.id && task.status == 'pending' %>
                       <%= link_to plan_task_mark_path(@plan, task), method: 'patch', class: "checkbox" do %>
                         <i class="far fa-square"></i>
                       <% end %>
-                    <% elsif @plan.user.id == current_user.id && task.status == 'complete'%>
+                    <% elsif current_user && @plan.user.id == current_user.id && task.status == 'complete'%>
                       <%= link_to plan_task_mark_path(@plan, task), method: 'patch', class: "checkbox" do %>
                         <i class="far fa-check-square"></i>
                       <% end %>
@@ -207,7 +207,7 @@
       <p id="closeDiaryModal" class="close">&times;</p>
     </div>
     <div class="form-container">
-      <h1>Add a new resource </h1>
+      <h1>New Diary Entry</h1>
       <%= simple_form_for [@plan, @diary_entry] do |f| %>
         <%= f.input :title %>
         <%= f.input :mood_list, :collection => @moods, :prompt => "How you feeling today?", :label => "Select a mood", required: true%>
