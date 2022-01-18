@@ -1,5 +1,12 @@
 // Specific CSS for your home-page
 
+.wrapper {
+  background-image: asset-url('landing-bg.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 .full-screen {
   height: 93vh;
   background-color: $off-white;
@@ -21,10 +28,21 @@
 }
 
 .home-headline {
-  margin-bottom: 100px;
+  margin-bottom: 40px;
+}
+
+.home-headline h1 {
+  font-family: $logo-font;
+  font-size: 3.5em;
+  margin-bottom: 40px;
+}
+
+.home-headline h2 {
+  font-size: 1.4em;
 }
 
 .home-search {
   width: 800px;
   margin-bottom: 100px;
+  padding-bottom: 50px;
 }
