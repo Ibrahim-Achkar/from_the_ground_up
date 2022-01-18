@@ -210,7 +210,7 @@
       <p id="closeDiaryModal" class="close">&times;</p>
     </div>
     <div class="form-container">
-      <h1>Add a new resource </h1>
+      <h1>New Diary Entry</h1>
       <%= simple_form_for [@plan, @diary_entry] do |f| %>
         <%= f.input :title %>
         <%= f.input :mood_list, :collection => @moods, :prompt => "How you feeling today?", :label => "Select a mood", required: true%>
