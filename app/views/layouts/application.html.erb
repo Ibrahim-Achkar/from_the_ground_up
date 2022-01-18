@@ -10,7 +10,7 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
     <%= favicon_link_tag %>
   </head>
-  <body class="<%= controller_name %> <%= action_name %> <%= @plan && @plan.user ? @plan.user.id == current_user.id ? "correct_user" : "visiting_user" : "visiting_user" %>">
+    <body class="<%= controller_name %> <%= action_name %> <%= @plan && @plan.user ? current_user && @plan.user.id == current_user.id ? "correct_user" : "visiting_user" : "visiting_user" %>">
     <div class="<%= "wrapper" if current_page?(root_url) %>">
         <%= render 'shared/navbar' %>
         <%= render 'shared/flashes' %>
