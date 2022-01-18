@@ -27,6 +27,7 @@ import { loadGoalsModal } from './plan/loadGoalsModal';
 import { loadTasksModal } from './plan/loadTasksModal';
 import { loadResourcesModal } from './plan/loadResourcesModal';
 import { loadDiaryEntriesModal } from './plan/loadDiaryEntriesModal';
+import { loadEditPlanModal } from './plan/loadEditPlanModal';
 import { closeModals } from './plan/closeModals';
 
 document.addEventListener('turbolinks:load', () => {
@@ -50,6 +51,7 @@ document.addEventListener('turbolinks:load', () => {
     loadTasksModal();
     loadResourcesModal();
     loadDiaryEntriesModal();
+    loadEditPlanModal();
     closeModals();
   }
 });
