@@ -1,3 +1,4 @@
+<% content_for :meta_title, "From the Ground Up - #{@plan.name}" %>
 <div class="container">
   <div class="header">
     <%if user_signed_in? && @plan.user.id != current_user.id%>

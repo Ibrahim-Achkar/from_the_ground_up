@@ -1,0 +1,5 @@
+meta_product_name: 'From the Ground Up'
+meta_title: 'From the Ground Up - A Community of Learners'
+meta_description: 'From the Ground Up is a tool to help you learn and connect with like minded people'
+meta_image: 'logo.png' # should exist in `app/assets/images/`
+twitter_account: '@from_the_ground_up' # required for Twitter Cards
