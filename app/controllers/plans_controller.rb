@@ -23,6 +23,7 @@ class PlansController < ApplicationController
   end
 
   def show
+    @categories = set_categories
     @tasks = @plan.tasks
     @resources = @plan.resources
     @resource_info = get_resource_info(@resources) if @resources
