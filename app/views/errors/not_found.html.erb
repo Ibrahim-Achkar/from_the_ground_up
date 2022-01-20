@@ -1,0 +1,8 @@
+<div class="container text-center error-page">
+  <h1 class="error-heading">Oh bummer!</h1>
+  <p>It looks like the page you're looking for isn't here...</p>
+  <%= link_to "Return to the home page", root_path, class: "btn btn-primary" %>
+  <% if !user_signed_in? %>
+    <%= link_to "Click here to login", new_user_session_path, class: "btn btn-primary" %>
+  <% end %>
+</div>
