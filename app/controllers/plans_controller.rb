@@ -91,21 +91,21 @@ class PlansController < ApplicationController
 
   def find_icon(plan)
     icons = {
-      "Art" => "fas fa-palette",
-      "Cooking" => "fas fa-utensils",
-      "Finance" => "fas fa-money-bill-alt",
-      "Gaming" => "fas fa-gamepad",
-      "Gardening" => "fas fa-leaf",
-      "Health & Wellbeing" => "fas fa-notes-medical",
-      "Language" => "fas fa-language",
-      "Misc" => "fas fa-random",
-      "Music" => "fas fa-music",
-      "Professional Development" => "fas fa-medal",
-      "Science" => "fas fa-microscope",
-      "Sport & Fitness" => "far fa-futbol",
-      "Tech" => "fas fa-laptop"
+      "art" => "fas fa-palette",
+      "cooking" => "fas fa-utensils",
+      "finance" => "fas fa-money-bill-alt",
+      "gaming" => "fas fa-gamepad",
+      "gardening" => "fas fa-leaf",
+      "health & wellbeing" => "fas fa-notes-medical",
+      "language" => "fas fa-language",
+      "misc" => "fas fa-random",
+      "music" => "fas fa-music",
+      "professional development" => "fas fa-medal",
+      "science" => "fas fa-microscope",
+      "sport & fitness" => "far fa-futbol",
+      "tech" => "fas fa-laptop"
     }
-    icons[plan]
+    icons[plan.downcase]
   end
 
   private
