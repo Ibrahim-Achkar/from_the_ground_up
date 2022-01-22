@@ -13,7 +13,9 @@
           <% if current_user.photo.attached?  %>
             <%= cl_image_tag current_user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <% else %>
-            <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+            <div class="avatar avatar-circle" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <p class="initials"> <%= current_user.username[0..1].upcase %></p>
+            </div>
           <% end %>
           <div class="dropdown-menu dropdown-menu-right mt-3" aria-labelledby="navbarDropdown">
             <%= link_to "Account Settings", edit_user_registration_path, class: "dropdown-item" %>
