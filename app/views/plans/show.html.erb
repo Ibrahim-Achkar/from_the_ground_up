@@ -229,7 +229,7 @@
     <div class="form-container">
       <h1>Edit your plan details</h1>
       <%= simple_form_for @plan do |f| %>
-        <%= f.input :name, :label => "What's the name of your plan?"%>
+        <%= f.input :name, :label => "What's the name of your plan?", input_html: { maxlength: 45 } %>
         <%= f.input :tag_list, :label => "Add tags seperated by commas - eg. one, two, three"%>
         <%= f.input :category_list, :collection => @categories, :prompt => "Select a category", :label => "Select a category", required: true%>
         <%= f.submit "Save Changes", class: "btn btn-primary button-form" %>
