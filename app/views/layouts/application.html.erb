@@ -31,5 +31,8 @@
         <%= render 'shared/flashes' %>
         <%= yield %>
     </div>
+    <% if !current_page?(root_url) %>
+      <%= render 'shared/footer' %>
+    <% end %>
   </body>
 </html>

@@ -1,0 +1,23 @@
+.page-footer {
+  background-color: $light-green;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.page-footer h3 {
+  font-size: 1em;
+}
+
+.page-footer li {
+  list-style: none;
+}
+
+.page-footer ul {
+  padding: 0;
+}
+
+.footer-logo {
+  font-family: $logo-font;
+  font-size: 24px;
+  padding-top: 25px;
+}
