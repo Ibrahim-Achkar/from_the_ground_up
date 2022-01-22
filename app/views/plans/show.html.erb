@@ -2,25 +2,29 @@
 <div class="container">
   <div class="header">
     <%if user_signed_in? && @plan.user.id != current_user.id%>
-      <%= link_to 'Clone Plan', plan_copy_path(@plan.id), class: "clone-btn btn btn-primary" %>
+      <%= link_to 'Use This Plan!', plan_copy_path(@plan.id), class: "clone-btn btn btn-primary" %>
     <%end %>
-    <h1 class="header-font"><%= @plan.name %></h1>
+    <h1 class="header-font m-4"><%= @plan.name %></h1>
   </div>
   <%# GOALS - if user signed in AND owns plan they can add a new goal%>
   <div class="goals-card">
-    <h2 class= "goals-header">Goals</h2>
-    <% @goals.each do |goal| %>
-      <p><%= goal.content %></p>
-    <% end %>
+    <div class="goals-heading-edit-button-wrapper">
+      <h2 class= "goals-header p-1 m-1">What I want to achieve...</h2>
+    </div>
     <% if current_user && @plan.user.id == current_user.id %>
-      <span id="goalsEditButton" class= "goals-button btn btn-primary">Edit Goals</span>
+      <p id="goalsEditButton" class= "btn btn-primary">Edit Goals</p>
     <%end%>
+    <div class="goals p-1 m-1">
+      <% @goals.each do |goal| %>
+        <p><%= goal.content %></p>
+      <% end %>
+    </div>
   </div>
 </div>
 <%# container closing div%>
-<div class="container">
-  <div class="row">
-    <div class="col-4">
+<div class="container" style="height: 50vh">
+  <div class="row" style="height: 100%">
+    <div class="col-4" style="height: 100%">
       <div class="planner-card">
         <div class="heading-button-wrapper">
           <h2>Planner</h2>
@@ -88,57 +92,67 @@
       </div>
       <div class="learning-card">
         <h2>Learning Diary </h2>
-        <div class="card-body">
-          <% @diary_entries.each do |entry| %>
-            <div class="diary-entry"><%= link_to entry.title, plan_diary_entry_path(@plan.id , entry.id) %></div>
-          <% end %>
-          <% if user_signed_in? %>
-            <% if @plan.user.id == current_user.id %>
-              <p id="diaryAddButton" class= "diary-btn btn btn-primary">New Diary Entry</p>
+        <div class="diary-entries">
+          <div class="card-body">
+            <% @diary_entries.each do |entry| %>
+              <div class="diary-entry"><%= link_to entry.title, plan_diary_entry_path(@plan.id , entry.id) %></div>
+            <% end %>
+            <% if user_signed_in? %>
+              <% if @plan.user.id == current_user.id %>
+                <p id="diaryAddButton" class= "diary-btn btn btn-primary">New Diary Entry</p>
+              <%end%>
             <%end%>
-          <%end%>
+          </div>
         </div>
       </div>
     </div>
     <%# column closing div %>
-    <div class="col-8">
+    <div class="col-8" style="height: 100%">
       <div class="card-resources">
         <div class="bookmark-header">
           <h2 class="resource-heading">My Bookmarks</h2>
           <% if user_signed_in? %>
             <% if @plan.user.id == current_user.id %>
-              <p id="resourceAddButton" class= "btn btn-primary">Add Resource</p>
+              <p id="resourceAddButton" class= "btn btn-primary">Add Bookmark</p>
             <% end %>
           <% end %>
         </div>
-        <div class="list-group">
-          <% @resource_info.each do |resource| %>
-            <div class="list-group-item list-group-item-action resource-card">
-              <a href="<%= resource[:url] %>">
-                <div class="dflex">
-                  <div class="resource-img">
-                    <img src=<%= resource[:image] %>>
-                  </div>
-                  <div class="resource-resources">
-                    <div>
-                      <h5 class="resource-title mb-1"><%= resource[:title] %></h5>
-                      <p class="resource-description mb-1"><%= resource[:description] %></p>
+        <div class=" bookmarks-list">
+          <div class="list-group">
+            <% @resource_info.each do |resource| %>
+              <div class="resource-card p-1 m-1">
+                <div class="list-group-item list-group-item-action border-0 p-1 m-1">
+                  <a href="<%= resource[:url] %>">
+                    <div class="dflex">
+                      <div class="resource-img">
+                        <% if resource[:image]%>
+                          <img src=<%= resource[:image] %>>
+                        <% else %>
+                          <img src="https://upload.wikimedia.org/wikipedia/commons/5/56/Chain_link_icon_slanted.png">
+                        <% end %>
+                      </div>
+                      <div class="resource-resources">
+                        <div>
+                          <h5 class="resource-title mb-1"><%= resource[:title] %></h5>
+                          <p class="resource-description mb-1"><%= resource[:description] %></p>
+                        </div>
+                        <p class="resource-link"><%= resource[:url] %></p>
+                      </div>
                     </div>
-                    <p class="resource-link"><%= resource[:url] %></p>
+                  </a>
+                  <div class="resource-trash">
+                    <% if user_signed_in? %>
+                      <% if @plan.user.id == current_user.id %>
+                        <%= link_to plan_resource_path(@plan.id, resource[:id]), method: :delete, data: { confirm: 'Are you sure?' } do %>
+                          <i class="far fa-trash-alt"></i>
+                        <% end %>
+                      <% end %>
+                    <% end %>
                   </div>
                 </div>
-              </a>
-              <div class="resource-trash">
-                <% if user_signed_in? %>
-                  <% if @plan.user.id == current_user.id %>
-                    <%= link_to plan_resource_path(@plan.id, resource[:id]), method: :delete, data: { confirm: 'Are you sure?' } do %>
-                      <i class="far fa-trash-alt"></i>
-                    <% end %>
-                  <% end %>
-                <% end %>
               </div>
-            </div>
-          <% end %>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
@@ -147,13 +161,13 @@
 </div>
 <%# container closing div %>
 <%# TASKS - if user signed in AND owns plan they can add/edit/delete a new task%>
-<div class="container footer-btns">
+<div class="container footer-btns mt-3">
   <%= link_to "Back", :back, class: "btn btn-primary" %>
   <%# if user owns a plan they can delete, edit plan, add/edit/delete goals, add/edit/delete resource, add/edit/delete task %>
   <% if user_signed_in? %>
     <% if @plan.user.id == current_user.id %>
       <div class="edit-delete-button-wrapper">
-        <div id="planEditButton" class= "btn btn-secondary">Edit Plan Details</div>
+        <div id="planEditButton" class= "btn btn-primary">Edit Plan Details</div>
         <%= link_to 'Delete Plan', plan_path(@plan), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
       </div>
     <% end %>
@@ -166,11 +180,13 @@
       <p id="closeGoalModal" class="close">&times;</p>
     </div>
     <div class="form-container">
-      <h2 class="text-center">Create a plan</h2>
+      <h2 class="text-center">Your goals</h2>
       <% @goals.each do |goal| %>
         <%= simple_form_for [@plan, goal] do |f| %>
-          <%= f.input :content, required: true, input_html: {value: goal.content || ''} %>
-          <%= f.submit "Update Goals", class: "btn btn-primary button-form" %>
+          <div class="goal-form-wrapper">
+            <%= f.input :content, :label => "Set a goal", required: true, input_html: {value: goal.content } %>
+            <%= f.submit "Update Goals", class: "btn btn-primary button-form goal-button" %>
+          </div>
         <% end %>
       <% end %>
     </div>
@@ -215,8 +231,8 @@
       <%= simple_form_for [@plan, @diary_entry] do |f| %>
         <%= f.input :title %>
         <%= f.input :mood_list, :collection => @moods, :prompt => "How you feeling today?", :label => "Select a mood", required: true%>
-        <%= f.input :content %>
-        <%= f.submit "Submit", class: "btn btn-primary button-form" %>
+        <%= f.input :content, :label => "What's on your mind?" %>
+        <%= f.submit "Save", class: "btn btn-primary button-form pull-right" %>
       <% end %>
     </div>
   </div>

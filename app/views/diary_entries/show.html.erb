@@ -1,5 +1,8 @@
-<div class="container">
-  <h2><%= @diary_entry.title %></h2>
-  <p>Mood: <%= @diary_entry.mood_list[0] %></p>
-  <p><%= @diary_entry.content %></p>
+<div class="diary-entry-wrapper">
+  <div class="container">
+    <h2><%= @diary_entry.title %></h2>
+    <p>Mood: <%= @diary_entry.mood_list[0] %></p>
+    <p><%= @diary_entry.content %></p>
+    <%= link_to "Back", :back, class: "btn btn-primary" %>
+  </div>
 </div>

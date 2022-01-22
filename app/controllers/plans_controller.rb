@@ -43,6 +43,11 @@ class PlansController < ApplicationController
     @plan = Plan.new(plan_params)
     @plan.user = @user
     if @plan.save
+      3.times do |_f|
+        goal = Goal.create(content: "Set your goals! 😀")
+        goal.plan = @plan
+        goal.save
+      end
       redirect_to plan_path(@plan)
     else
       render :new
