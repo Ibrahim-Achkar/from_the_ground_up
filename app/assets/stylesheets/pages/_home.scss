@@ -8,8 +8,16 @@
   height: 100vh;
 }
 
+.page-wrapper {
+  background-image: asset-url('page-bg.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
 .full-screen {
-  background-color: $off-white;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
@@ -33,15 +41,21 @@
 .home-headline h1 {
   font-family: $logo-font;
   font-size: 3.5em;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 
 .home-headline h2 {
-  font-size: 1.4em;
+  font-size: 1.5em;
+
 }
 
 .home-search {
   width: 800px;
   margin-bottom: 100px;
   padding-bottom: 50px;
+}
+
+.home-search h3 {
+  font-size: 18px;
+  padding-bottom: 8px;
 }

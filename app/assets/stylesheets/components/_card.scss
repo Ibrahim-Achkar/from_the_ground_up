@@ -11,7 +11,11 @@
 // prevent plan title from making a new line
 // and affecting card height
 .plan-card h5 {
-  white-space: nowrap;
+  // white-space: nowrap;
+}
+
+.card-body{
+  padding-top: 16px;
 }
 
 .plan-icon {
@@ -49,6 +53,19 @@
   display: flex;
   justify-content: space-between;
 }
+.card-text {
+  font-size: 0.8em;
+  margin: 0;
+  width: 248px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-content {
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
 
 .card-footer-flex {
   display: flex;
@@ -70,6 +87,7 @@
 
 .heart {
   padding-right: 1rem;
+  padding-top: 3px;
 }
 
 .heart-number {
@@ -77,5 +95,7 @@
 }
 
 .card-title {
-
+  inline-size: 225px;
+  height: 35px;
+  word-wrap: break-word;
 }

@@ -26,10 +26,13 @@
     <%= favicon_link_tag %>
   </head>
     <body class="<%= controller_name %> <%= action_name %> <%= @plan && @plan.user ? current_user && @plan.user.id == current_user.id ? "correct_user" : "visiting_user" : "visiting_user" %>">
-    <div class="<%= "wrapper" if current_page?(root_url) || current_page?(not_found_url) || current_page?(internal_server_error_url)%>">
+    <div class="<%= current_page?(root_url) || current_page?(not_found_url) || current_page?(internal_server_error_url) ? "wrapper" : "page-wrapper" %>">
         <%= render 'shared/navbar' %>
         <%= render 'shared/flashes' %>
         <%= yield %>
     </div>
+    <% if !current_page?(root_url) %>
+      <%= render 'shared/footer' %>
+    <% end %>
   </body>
 </html>

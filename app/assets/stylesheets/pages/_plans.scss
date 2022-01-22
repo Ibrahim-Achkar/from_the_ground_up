@@ -1,6 +1,14 @@
 .index-header {
   text-align: center;
-  padding: 24px;
+  padding-top: 48px;
+  font-family: $logo-font;
+  font-size: 3em;
+}
+
+.index-subheader {
+  text-align: center;
+  font-size: 1em;
+  padding-top: 16px;
 }
 
 .fa-plus-circle {
@@ -13,6 +21,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 16px;
+  padding-bottom: 80px;
 }
 
 
