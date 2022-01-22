@@ -1,17 +1,43 @@
 .goals-card {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  background-color: white;
+  background-color: $white;
   border-radius: 4px;
   padding: 16px;
   margin-bottom: 24px;
 }
 
 .goals {
-  background-color: white;
+  background-color: $white;
+  font-size: 2vmin;
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   border-radius: 4px;
   padding: 16px, 4px;
+}
+
+.goals-heading-edit-button-wrapper {
+  display: flex;
+}
+
+#goalsEditButton {
+  position: relative;
+  left: 473px;
+  top: -56px;
+}
+
+.goal-form-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.goal-button {
+  margin-top: 15px;
 }
 
 .header-font {
@@ -19,18 +45,17 @@
   text-align: center;
 }
 
-.goals-button,
-.goals-header,
-.goals-card p {
-  margin: 0;
-}
-
 .planner-card,
 .learning-card {
-  background-color: white;
+  background-color: $white;
   border-radius: 4px;
   padding: 16px;
-  margin-bottom: 24px;
+  margin-bottom: 1vh;
+}
+
+.diary-entries {
+  height: 12vh;
+  overflow: auto;
 }
 
 .heading-button-wrapper {
@@ -39,7 +64,7 @@
 }
 
 .table-wrapper {
-  max-height: 500px;
+  height: 24vh;
   overflow: auto;
   display: inline-block;
 }
@@ -63,26 +88,25 @@
 }
 
 .card-resources {
-  background-color: white;
+  background-color: $white;
   padding: 16px;
   border-radius: 4px;
+  height: 100%;
 }
+
 .bookmark-header {
   display: flex;
   justify-content: space-between;
 }
 
+.bookmarks-list {
+  max-height: 90%;
+  overflow: auto;
+}
+
 .footer-btns {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 24px;
-  margin-top: 24px;
-}
-
-.goals-card p {
-  background-color: $light-green;
-  padding: 4px 12px;
-  border-radius: 16px;
 }
 
 .header .clone-btn {
