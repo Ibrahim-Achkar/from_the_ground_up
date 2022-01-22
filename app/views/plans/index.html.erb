@@ -1,5 +1,6 @@
 <div class="container">
   <h1 class="index-header">Learning Plans</h1>
+  <h2 class="index-subheader">Find your perfect plan</h2>
   <div class="drop-down">
     <%= simple_form_for :search, url: plans_path, method: "GET" do |f| %>
     <!--<%= f.input :categories, label: "Category",  collection: @categories, as: :radio_buttons, required: false %>-->
@@ -29,13 +30,12 @@
         </div>
         <div class="card-body">
           <h5 class="card-title"><%=plan.name%></h5>
-          <div class = "flex-container">
+          <div class="card-content">
             <p class="card-text">By: <%=plan.user.username%></p>
-            <p>Created: <%=plan.created_at.strftime("%Y-%m-%d")%></p>
+            <p class="card-text">Added: <%=plan.created_at.strftime("%d %B %Y")%></p>
           </div>
 
-
-          <a><%= link_to "Select Plan!", plan_path(plan), class: "btn btn-primary" %></a>
+          <a><%= link_to "View", plan_path(plan), class: "btn btn-primary" %></a>
 
           <div class="name-and-heart-container">
             <% if !current_user%>
@@ -74,12 +74,12 @@
         <p class="close">&times;</p>
       </div>
       <div class="form-container">
-        <h2 class="text-center">Create a plan</h2>
+        <h2 class="text-center">Create a learning plan</h2>
         <%= simple_form_for @plan do |f| %>
-          <%= f.input :name, :label => "What's the name of your plan?"%>
+          <%= f.input :name, :label => "What's the name of your plan?", input_html: { maxlength: 45 } %>
           <%= f.input :tag_list, :label => "Add tags seperated by commas - eg. one, two, three"%>
           <%= f.input :category_list, :collection => @categories, :prompt => "Select a category", :label => "Select a category", required: true%>
-          <%= f.submit "Create new plan", class: "btn btn-primary button-form" %>
+          <%= f.submit "Start learning", class: "btn btn-primary button-form" %>
         <% end %>
       </div>
     </div>
