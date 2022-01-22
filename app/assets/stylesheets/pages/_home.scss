@@ -8,8 +8,16 @@
   height: 100vh;
 }
 
+.page-wrapper {
+  background-image: asset-url('page-bg.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
 .full-screen {
-  background-color: $off-white;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
