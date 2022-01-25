@@ -43,6 +43,8 @@
 .header-font {
   padding: 16px;
   text-align: center;
+  font-family: $logo-font;
+  font-size: 3em;
 }
 
 .planner-card,
@@ -50,11 +52,20 @@
   background-color: $white;
   border-radius: 4px;
   padding: 16px;
-  margin-bottom: 1vh;
+}
+
+.planner-card {
+  margin-bottom: 0px;
+}
+
+.left-sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .diary-entries {
-  height: 12vh;
+  height: 75%;
   overflow: auto;
 }
 
@@ -64,7 +75,7 @@
 }
 
 .table-wrapper {
-  height: 24vh;
+  height: 75%;
   overflow: auto;
   display: inline-block;
 }
