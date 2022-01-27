@@ -8,51 +8,50 @@
 
   <div class="tab-content">
     <div class="tab-pane active" id="navtabs1">
-      <h2 class="m-3 p-3 top-margin">Hi <%= @user.username%></h2>
-        <div class="plan-and-profile">
-          <div class="plans">
-            <div class="row">
-              <% @plans.each do |plan| %>
-               <div class="col-sm-3">
-                  <div class="m-3 p-3">
-                     <div  style="width: 18rem;">
-                       <div class="plan-card">
-                          <div class="plan-icon">
-                            <div class="pattern">
-                              <%= image_tag("patterns/pattern_#{rand(0..36)}.png") %>
-                            </div>
-                            <div class="icon">
-                              <i class="<%= find_icon(plan.category_list[0]) %>"></i>
-                            </div>
-                          </div>
-                            <div class="card-body">
-                              <h5 class="card-title"><%=plan.name%></h5>
-                                <div class = "flex-container">
-                                  <p class="card-text">By: <%=plan.user.username%></p>
-                                  <p>Created: <%=plan.created_at.strftime("%Y-%m-%d")%></p>
-                                </div>
-                                <a><%= link_to "Select Plan!", plan_path(plan), class: "btn btn-primary" %></a>
-                                <div class="name-and-heart-container">
-                                  <div class="heart-container">
-                                      <i class="fas fa-heart heart"></i>
-                                      <p class="heart-number"><%= plan.get_upvotes.size %></p>
-                                  </div>
-                                </div>
-
-                            </div>
-                          </div>
+      <div class="container">
+        <h2 class="m-3 p-3 top-margin welcome-header"><%= @user.username%>'s Learning Centre</h2>
+            <div class="cards">
+                <% if user_signed_in? %>
+                  <a id="newPlanBtn" class="top-padding">
+                    <div class="plan-card text-center">
+                      <i class="fas fa-plus-circle"></i>
+                    </div>
+                  </a>
+                <% end %>
+                <% @plans.each do |plan| %>
+                  <div class="plan-card">
+                    <div class="plan-icon">
+                      <div class="pattern">
+                        <%= image_tag("patterns/pattern_#{rand(0..36)}.png") %>
+                      </div>
+                    <div class="icon">
+                      <i class="<%= find_icon(plan.category_list[0]) %>"></i>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title"><%=plan.name%></h5>
+                      <div class = "flex-container">
+                        <p class="card-text">By: <%=plan.user.username%></p>
+                        <p class="card-text text-btm">Created: <%=plan.created_at.strftime("%Y-%m-%d")%></p>
+                      </div>
+                      <a><%= link_to "View", plan_path(plan), class: "btn btn-primary" %></a>
+                      <div class="name-and-heart-container">
+                        <div class="heart-container">
+                          <i class="fas fa-heart heart"></i>
+                          <p class="heart-number"><%= plan.get_upvotes.size %></p>
                         </div>
                       </div>
-                    </div>
+
+              </div>
+            </div>
               <% end %>
-          </div>
         </div>
       </div>
     </div>
 
 
      <div class="tab-pane fade" id="navtabs2">
-       <h1 id="liked-plans" class="m-3 p-3 top-margin"><%= @user.username%>'s liked plans</h1>
+       <h1 id="liked-plans" class="top-margin">Your liked plans</h1>
         <div class="plan-and-profile">
            <div class="plans">
               <div class="row">
@@ -61,7 +60,7 @@
                 <%else%>
                    <% @user.find_up_voted_items.each do |plan| %>
                     <div class="col-sm-3">
-                      <div class="m-3 p-3">
+                      <div class=" p-2">
                         <div style="width: 18rem;">
                           <div class="plan-card">
                             <div class="plan-icon">
@@ -77,9 +76,9 @@
 
                                   <div class = "flex-container">
                                     <p class="card-text">By: <%=plan.user.username%></p>
-                                    <p>Created: <%=plan.created_at.strftime("%Y-%m-%d")%></p>
+                                    <p class= "card-text text-btm">Created: <%=plan.created_at.strftime("%Y-%m-%d")%></p>
                                   </div>
-                                    <a><%= link_to "Select Plan!", plan_path(plan), class: "btn btn-primary" %></a>
+                                    <a><%= link_to "View", plan_path(plan), class: "btn btn-primary" %></a>
                                   <div class="name-and-heart-container">
                                     <div class="heart-container">
                                       <i class="fas fa-heart heart"></i>
@@ -99,5 +98,30 @@
           </div>
         </div>
      </div>
+
+
   </div>
+
+  <div id="newPlanModal" class="modal">
+    <div class="modal-content">
+      <div>
+        <p class="close">&times;</p>
+      </div>
+      <div class="form-container">
+        <h2 class="text-center">Create a learning plan</h2>
+        <%= simple_form_for @plan do |f| %>
+          <%= f.input :name, :label => "What's the name of your plan?", input_html: { maxlength: 45 } %>
+          <%= f.input :tag_list, :label => "Add tags seperated by commas - eg. one, two, three"%>
+          <%= f.input :category_list, :collection => @categories, :prompt => "Select a category", :label => "Select a category", required: true%>
+          <%= f.submit "Start learning", class: "btn btn-primary button-form" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
 </div>

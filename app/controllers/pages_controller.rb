@@ -8,6 +8,10 @@ class PagesController < ApplicationController
     if current_user
        @user = current_user
        @plans = @user.plans
+       @plan = Plan.new
+       @categories = set_categories
+
+       #redirect_to new_plan_path and return
     #   @likes = Like.where(user: @user)
     else
        redirect_to new_user_session_url
@@ -31,5 +35,21 @@ class PagesController < ApplicationController
       "Tech" => "fas fa-laptop"
     }
     icons[plan]
+  end
+
+  def set_categories
+    ["Art",
+     "Cooking",
+     "Finance",
+     "Gaming",
+     "Gardening",
+     "Health & Wellbeing",
+     "Language",
+     "Misc",
+     "Music",
+     "Professional Development",
+     "Science",
+     "Sport & Fitness",
+     "Tech"]
   end
 end

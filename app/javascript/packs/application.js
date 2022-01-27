@@ -40,7 +40,12 @@ document.addEventListener('turbolinks:load', () => {
   ) {
     loadModal();
   }
-
+  if (
+    document.getElementsByClassName('pages').length > 0 &&
+    document.getElementsByClassName('dashboard').length > 0
+  ) {
+    loadModal();
+  }
   // only load these modals if we have the owning user logged in, we are in the plans controller and we are in the show action
   if (
     document.getElementsByClassName('correct_user').length > 0 &&
@@ -54,4 +59,5 @@ document.addEventListener('turbolinks:load', () => {
     loadEditPlanModal();
     closeModals();
   }
+
 });
