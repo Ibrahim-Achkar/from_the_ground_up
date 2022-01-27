@@ -9,14 +9,14 @@
   <%# GOALS - if user signed in AND owns plan they can add a new goal%>
   <div class="goals-card">
     <div class="goals-heading-edit-button-wrapper">
-      <h2 class= "goals-header p-1 m-1">What I want to achieve...</h2>
+      <h2 class= "goals-header">What I want to achieve...</h2>
     </div>
     <% if current_user && @plan.user.id == current_user.id %>
       <p id="goalsEditButton" class= "btn btn-primary">Edit Goals</p>
     <%end%>
-    <div class="goals p-1 m-1">
+    <div class="goals">
       <% @goals.each do |goal| %>
-        <p><%= goal.content %></p>
+        <p class="goal"><%= goal.content %></p>
       <% end %>
     </div>
   </div>
@@ -122,7 +122,7 @@
             <% @resource_info.each do |resource| %>
               <div class="resource-card p-1 m-1">
                 <div class="list-group-item list-group-item-action border-0 p-1 m-1">
-                  <a href="<%= resource[:url] %>">
+                  <a href="<%= resource[:url] %>", target="_blank">
                     <div class="dflex">
                       <div class="resource-img">
                         <% if resource[:image]%>
@@ -185,7 +185,7 @@
         <%= simple_form_for [@plan, goal] do |f| %>
           <div class="goal-form-wrapper">
             <%= f.input :content, :label => "Set a goal", required: true, input_html: {value: goal.content } %>
-            <%= f.submit "Update Goals", class: "btn btn-primary button-form goal-button" %>
+            <%= f.submit "Update Goal", class: "btn btn-primary button-form goal-button" %>
           </div>
         <% end %>
       <% end %>
