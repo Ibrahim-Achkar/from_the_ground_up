@@ -43,13 +43,13 @@ E: Yeah sure, here ill use my profile to show you around!
 7. Copy the plan
 8. Change plan name
 9. Change a goal
-10. Delete a resource
-11. Add a resource
-12. Add a task
-13. Add a diary entry
+10. Add a task
+11. Don't add diary entry but show mood
+12. Delete a resource
+13. Add a resource
 14. Go to user dash
-15. Show user liked plan
-16. Show that you can create a new plan from scratch
+15. Show that you can create a new plan from scratch but dont create one
+16. Show user liked plan
 
 I: Fast forward three years later, Andrew is a crack coder at Google, dating models, and loving life. He gives Vish a call to update him on things.
 
@@ -57,4 +57,4 @@ A: Vish, life is great. You were totally right about from the ground up. Game ch
 
 V: That's awesome, cos I just lost all my money on crypto. I need a change.
 
-I: From the ground up to the rescue, once again.
+I: From the Ground Up to the rescue, once again.
