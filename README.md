@@ -1,6 +1,7 @@
 Rails app generated with [lewagon/rails-templates](https://github.com/lewagon/rails-templates), created by the [Le Wagon coding bootcamp](https://www.lewagon.com) team.
 
-#Presentation Day Script
+# Presentation Day Script
+
 I: Meet Andrew, Andrew is a little tired of his job and is looking to get into programming. He doesn't know where to start though. Hey Andrew.
 I: Meet Ellie, Ellie is a elite programmer working at 2022's hottest tech startup, From the Ground Up
 E: Hey Andrew, long time no see, how you going?
@@ -17,7 +18,7 @@ I: Andrew calls Ellie soon after
 A: Hey Ellie, is that offer to take me through the site still open?
 E: Yeah sure, here ill use my profile to show you around!
 
-##Actions:
+## Actions:
 
 1. Start on landing page - logged in as Ellie
 2. Hit go on plans
